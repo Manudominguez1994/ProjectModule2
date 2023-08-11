@@ -30,8 +30,8 @@ const userSchema = new Schema(
       default: String
     },
     dateborn:{
-      type:Date,
-      required:true
+      type:Date
+      // required:true
     },
     placeFav:[
       {

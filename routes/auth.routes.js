@@ -11,7 +11,7 @@ router.get("/signup", (req, res, next) => {
 });
 // POST "/auth/signup"=> recibir la info del form del usuario y crearlo en la BD
 router.post("/signup", async (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { username, email, password, dateborn } = req.body;
   //condicional para comprobar que todos los campos del form registro estan rellenos
   if (username === "" || email === "" || password === "" || dateborn === "") {
@@ -34,7 +34,7 @@ router.post("/signup", async (req, res, next) => {
     const userFound = await User.findOne({
       $or: [{ email: email }, { username: username }],
     });
-    console.log(userFound);
+    // console.log(userFound);
     if (userFound !== null) {
       res.status(400).render("auth/signup.hbs", {
         errorMessage:
@@ -45,7 +45,7 @@ router.post("/signup", async (req, res, next) => {
     //ciframos password
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
-    console.log(passwordHash);
+    // console.log(passwordHash);
     await User.create({
       username: username,
       email: email,
@@ -63,12 +63,13 @@ router.get("/login", (req, res, next) => {
 });
 //POST /auth/login => Recibe las credenciales del usuario y valida/autentica
 router.post("/login", async (req, res, next) => {
+  const {email , password} = req.body
   try {
     //Verificacion de que el usuario esta creado
     //Verificacion Email
     const userFound = await User.findOne({ email: email });
-    console.log(userFound);
-    if (userFound === undefined) {
+    // console.log("el usuario",userFound);
+    if (userFound === null) {
       res.status(400).render("auth/login.hbs", {
         errorMessage: "No existe niguna cuenta con ese correo",
       });
@@ -76,7 +77,7 @@ router.post("/login", async (req, res, next) => {
     }
     //Verificacion Password
     const passwordCorrect = await bcrypt.compare(password, userFound.password);
-    console.log(passwordCorrect);
+    // console.log(passwordCorrect);
     if (passwordCorrect === false) {
       res.status(400).render("auth/login.hbs", {
         errorMessage: "Contraseña no valida",
@@ -97,4 +98,10 @@ router.post("/login", async (req, res, next) => {
     next(error);
   }
 });
+// GET "/auth/logout" => el usuario puede cerrar su sesion activa
+router.get("/logout", (req, res, next) => {
+  req.session.destroy(() => {
+    res.redirect("/")
+  })
+})
 module.exports = router;

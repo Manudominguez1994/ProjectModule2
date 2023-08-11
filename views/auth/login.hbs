@@ -1,6 +1,6 @@
 <div>
   <h2>Aqui nos lojeamos</h2>
-  <form action="/auth/login">
+  <form action="/auth/login" method="post">
     <label for="email">Email</label>
     <input type="email" name="email" />
     <br />
@@ -8,7 +8,7 @@
     <input type="password" name="password" />
     <br />
     <button>Acceder</button>
-    <button>Registrarse</button>
+    {{!-- <button>Registrarse</button> --}}
     {{#if this.errorMessage}}
       <p>{{this.errorMessage}}</p>
     {{/if}}
