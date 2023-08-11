@@ -12,9 +12,7 @@ router.get("/signup", (req, res, next) => {
 // POST "/auth/signup"=> recibir la info del form del usuario y crearlo en la BD
 router.post("/signup", async (req, res, next) => {
   console.log(req.body);
-
   const { username, email, password, dateborn } = req.body;
-
   //condicional para comprobar que todos los campos del form registro estan rellenos
   if (username === "" || email === "" || password === "" || dateborn === "") {
     res.status(400).render("auth/signup.hbs", {
@@ -22,7 +20,6 @@ router.post("/signup", async (req, res, next) => {
     });
     return;
   }
-
   //validar que la contraseña tenga los caracteres pedidos: mayusc, minusc, caracter especial y leng: +=8
   const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
   if (regexPassword.test(password) === false) {
@@ -32,7 +29,6 @@ router.post("/signup", async (req, res, next) => {
     });
     return;
   }
-
   try {
     //comprobamos si el usuario existe a traves del nombre / email
     const userFound = await User.findOne({
@@ -49,15 +45,12 @@ router.post("/signup", async (req, res, next) => {
     //ciframos password
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
-
     console.log(passwordHash);
-
     await User.create({
       username: username,
       email: email,
       password: passwordHash,
     });
-
     // lo ultimo que ocurrira cuando se ejecute todo...
     res.redirect("/auth/login");
   } catch (error) {
