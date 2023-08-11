@@ -1,0 +1,29 @@
+<div>
+  <h2>Formulario para crear nuevo lugar</h2>
+  <form action="/places/create-place" method="post">
+    <label for="name">Nombre del Lugar</label>
+    <input type="text" name="name" />
+    <br />
+    <br />
+    <label for="location">Localización</label>
+    <input type="text" name="location" />
+    <br />
+    <br />
+    <label for="description">Descripción</label>
+    <input type="text" name="description" />
+    <br />
+    <br />
+    <label for="placeImg">Imagen del Lugar</label>
+    <input type="file" name="placeImg" />
+    <br />
+    <br />
+    <label for="province">Provincia</label>
+    <input type="text" name="province" />
+    <br />
+    <br />
+    <button>Añadir</button>
+    {{#if this.errorMessage}}
+      <p>{{this.errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>

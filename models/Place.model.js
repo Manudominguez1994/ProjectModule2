@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
 
-
 const placeSchema = new Schema({
   name: {
     type: String,
@@ -24,35 +23,35 @@ const placeSchema = new Schema({
     enum: [
       {
         name: "Almería",
-        img: String
+        img: String,
       },
       {
         name: "Cádiz",
-        img: String
+        img: String,
       },
       {
         name: "Córdoba",
-        img: String
+        img: String,
       },
       {
         name: "Granada",
-        img: String
+        img: String,
       },
       {
         name: "Huelva",
-        img: String
+        img: String,
       },
       {
         name: "Jaén",
-        img: String
+        img: String,
       },
       {
         name: "Málaga",
-        img: String
+        img: String,
       },
       {
         name: "Sevilla",
-        img: String
+        img: String,
       },
     ],
   },

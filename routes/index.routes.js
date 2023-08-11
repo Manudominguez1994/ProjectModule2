@@ -16,4 +16,7 @@ router.use("/auth", authRouter);
 const userRouter = require("./user.routes.js");
 router.use("/user", userRouter);
 
+const placesRouter = require("./places.routes.js");
+router.use("/places", placesRouter);
+
 module.exports = router;

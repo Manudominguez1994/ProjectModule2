@@ -4,18 +4,18 @@ const mongoose = require("mongoose");
 const commentSchema = new Schema({
   owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
+    ref: "User",
   },
   description: {
     type: String,
     required: true,
   },
-  valoration:Number,
-  place:{
+  valoration: Number,
+  place: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Place"
-  }
+    ref: "Place",
+  },
 });
 
-const Comment = model("Comment",commentSchema);
+const Comment = model("Comment", commentSchema);
 module.exports = Comment;

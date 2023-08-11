@@ -7,42 +7,42 @@ const userSchema = new Schema(
       type: String,
       trim: true,
       required: true,
-      unique: true
+      unique: true,
     },
     email: {
       type: String,
       required: true,
       unique: true,
       lowercase: true,
-      trim: true
+      trim: true,
     },
     password: {
       type: String,
-      required: true
+      required: true,
     },
-    role:{
+    role: {
       type: String,
-      enum:["user","admin"],
-      default:"user"
+      enum: ["user", "admin"],
+      default: "user",
     },
-    profileImg:{
-      type:String,
-      default: String
+    profileImg: {
+      type: String,
+      default: String,
     },
-    dateborn:{
-      type:Date
+    dateborn: {
+      type: Date,
       // required:true
     },
-    placeFav:[
+    placeFav: [
       {
-      type: mongoose.Schema.Types.ObjectId,
-      ref : "Place"
-    }
-  ]
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Place",
+      },
+    ],
   },
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`    
-    timestamps: true
+    // this second object adds extra properties: `createdAt` and `updatedAt`
+    timestamps: true,
   }
 );
 
