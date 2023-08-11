@@ -9,13 +9,34 @@
       <link rel="stylesheet" href="/stylesheets/style.css" />
    </head>
 
-   <nav>
-      <a href="/">Inicio</a>
-      <a href="/auth/login">Inicio de sesion</a>
-      <a href="/auth/signup">Registrarse</a>
-   </nav>
+ 
 
-   <body>
+<body>
+
+   <nav>
+         <a href="/">Inicio</a>
+
+         {{#if isUserActive}}
+            {{#unless isAdminActive}}
+               <a href="/user-profile">Mi Perfil</a>
+               <a href="auth/logout">Cerrar Sesión</a>
+            {{/unless}}
+         {{/if}}
+
+         
+         {{#if isAdminActive}}
+            <a href="/user-profile">Mi Perfil</a>
+            <a href="auth/logout">Cerrar Sesión</a>
+            <a href="/destinos-visitados">Destinos Visitados</a>
+         {{/if}}     
+
+         {{#unless isUserActive}}       
+         <a href="/auth/login">Inicio de sesion</a>
+         <a href="/auth/signup">Registrarse</a>
+         {{/unless}}
+
+      </nav>
+
 
       {{{body}}}
 
