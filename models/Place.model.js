@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 
+
 const placeSchema = new Schema({
   name: {
     type: String,
