@@ -1,37 +1,27 @@
 <div>
-
   <h3>Formulario de Registro</h3>
-
   <form action="/auth/signup" method="post">
-
     <label for="username">Nombre</label>
     <input type="text" name="username">
-
     <br>
-
+    
     <label for="email">Email</label>
     <input type="email" name="email">
-
     <br>
 
     <label for="password">Contraseña</label>
     <input type="password" name="password">
-
     <br>
 
     <label for="dateborn">Fecha de Nacimiento</label>
     <input type="date" name="dateborn">
-
     <br>
-
     <label for="profileImg">Imagen de Perfil</label>
     <input type="file" name="profileImg"><button>Selecciona una foto</button></input>
-
+    <br>
     <button>Registrarse</button>
-
     {{#if this.errorMessage}} 
       <p>{{this.errorMessage}}</p>
     {{/if}}
-
   </form>
 </div>

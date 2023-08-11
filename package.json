@@ -16,6 +16,7 @@
     "hbs": "^4.2.0",
     "mongoose": "^7.4.2",
     "morgan": "^1.10.0",
+    "regex": "^0.1.1",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
