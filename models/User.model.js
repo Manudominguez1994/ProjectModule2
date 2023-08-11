@@ -6,7 +6,7 @@ const userSchema = new Schema(
     username: {
       type: String,
       trim: true,
-      required: false,
+      required: true,
       unique: true
     },
     email: {
@@ -19,7 +19,26 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true
+    },
+    role:{
+      type: String,
+      enum:["user","admin"],
+      default:"user"
+    },
+    profileImg:{
+      type:String,
+      default: String
+    },
+    dateborn:{
+      type:Date,
+      required:true
+    },
+    placeFav:[
+      {
+      type: mongoose.Schema.Types.ObjectId,
+      ref : "Place"
     }
+  ]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`    
