@@ -31,7 +31,6 @@ const userSchema = new Schema(
     },
     dateborn: {
       type: Date,
-      // required:true
     },
     placeFav: [
       {

@@ -1,9 +1,12 @@
 <div>
-   <h2>Aqui los detalles de nuestro lugar</h2>
+   <h2>Aqui los detalles de {{placeDetails.name}}</h2>
    {{#each placeDetails}}
-   <h3>{{this.name}}</h3>
    <p>{{this.location}}</p>
    <p>{{this.description}}</p>
    <img src="{{this.placeImg}}" alt="">
    {{/each}}
+   {{#if isAdminActive}}
+   <a href="/places/{{placeDetails._id}}/update"><button>Editar</button></a>
+   <form action="/places/{{placeDetails._id}}/delete" method="post"><button type="submit">Eliminar</button></form>
+    {{/if}}  
 </div>
