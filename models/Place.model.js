@@ -20,40 +20,7 @@ const placeSchema = new Schema({
   },
   province: {
     type: String,
-    enum: [
-      {
-        name: "Almería",
-        img: String,
-      },
-      {
-        name: "Cádiz",
-        img: String,
-      },
-      {
-        name: "Córdoba",
-        img: String,
-      },
-      {
-        name: "Granada",
-        img: String,
-      },
-      {
-        name: "Huelva",
-        img: String,
-      },
-      {
-        name: "Jaén",
-        img: String,
-      },
-      {
-        name: "Málaga",
-        img: String,
-      },
-      {
-        name: "Sevilla",
-        img: String,
-      },
-    ],
+    enum: ["Almería","Cádiz","Córdoba","Granada","Huelva","Jaén","Málaga","Sevilla"],
   },
 });
 
