@@ -4,10 +4,10 @@ const Place = require("../models/Place.model");
 //GET /places/:dinamico => Renderizamos la vista de nuestro lista de lugares filtrados por provincias
 router.get("/:province", async (req, res, next) => {
   
-  console.log("miprovicia",req.params.province);
+  // console.log("miprovicia",req.params.province);
  try{
     const allPlaces = await Place.find({province: req.params.province})
-    console.log("todos mis lugares filtrados",allPlaces);
+    // console.log("todos mis lugares filtrados",allPlaces);
     res.render("places/list-places.hbs",{allPlaces});
   } catch (error) {
     next(error);
@@ -19,7 +19,7 @@ router.get("/create/place", (req, res, next) => {
 });
 //POST /places/create-place => Creamos el lugar en nuestra base de datos
 router.post("/create/place", async (req, res, next) => {
-  console.log("nuevo lugar", req.body);
+  // console.log("nuevo lugar", req.body);
 
   try {
     const newPlace = await Place.create({
@@ -29,7 +29,7 @@ router.post("/create/place", async (req, res, next) => {
       placeImg: req.body.placeImg,
       province: req.body.province,
     });
-    console.log("Mi nuevo lugar",newPlace);
+    // console.log("Mi nuevo lugar",newPlace);
     res.redirect(`/places/${newPlace._id}/details`);
   } catch (error) {
     next(error);
@@ -40,7 +40,7 @@ router.get("/:placeId/details",async(req, res, next)=>{
   // const {placeId} = req.params
   try {
     const placeDetails = await Place.findById(req.params.placeId)
-    console.log(placeDetails);
+    // console.log(placeDetails);
     res.render("places/place-details.hbs",{placeDetails})
   } catch (error) {
     next(error)

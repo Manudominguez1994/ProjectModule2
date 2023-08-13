@@ -18,14 +18,14 @@
 
          {{#if isUserActive}}
             {{#unless isAdminActive}}
-               <a href="/user-profile">Mi Perfil</a>
+               <a href="/user/profile/">Mi Perfil</a>
                <a href="auth/logout">Cerrar Sesión</a>
             {{/unless}}
          {{/if}}
 
          
          {{#if isAdminActive}}
-            <a href="/user-profile">Mi Perfil</a>
+            <a href="/user/profile/">Mi Perfil</a>
             <a href="auth/logout">Cerrar Sesión</a>
             <a href="/places/create/place">Crear Nuevo Lugar</a>
          {{/if}}     

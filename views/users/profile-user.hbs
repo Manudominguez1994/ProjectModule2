@@ -1,1 +1,13 @@
-<div><h2></h2></div>
+<div>
+    <h2>Perfil de usuario</h2>
+  
+    <h2>{{oneUser.username}}</h2>
+    <img src="{{oneUser.profileImg}}" alt="">
+    <p>{{oneUser.email}}</p>
+    <div>
+    {{#each oneUser.placeFav}}
+        <li>{{this.name}}</li>
+    {{/each}}
+    </div>
+   
+</div>
