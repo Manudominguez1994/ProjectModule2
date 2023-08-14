@@ -12,7 +12,8 @@ router.get("/signup", (req, res, next) => {
 // POST "/auth/signup"=> recibir la info del form del usuario y crearlo en la BD
 router.post("/signup", async (req, res, next) => {
   // console.log(req.body);
-  const { username, email, password, dateborn } = req.body;
+  const { username, email, password, dateborn, profileImg } = req.body;
+
   //condicional para comprobar que todos los campos del form registro estan rellenos
   if (username === "" || email === "" || password === "" || dateborn === "") {
     res.status(400).render("auth/signup.hbs", {
@@ -45,11 +46,20 @@ router.post("/signup", async (req, res, next) => {
     //ciframos password
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
+
+
     // console.log(passwordHash);
+
+    const fechaNac = new Date(dateborn)
+    fechaNac.toDateString()
+    fechaNac.substring(0,10)
+    console.log("esta es la fecha de nac",fechaNac)
     await User.create({
       username: username,
       email: email,
       password: passwordHash,
+      dateborn: fechaNac,
+      profileImg: profileImg
     });
     // lo ultimo que ocurrira cuando se ejecute todo...
     res.redirect("/auth/login");

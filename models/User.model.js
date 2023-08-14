@@ -31,6 +31,7 @@ const userSchema = new Schema(
     },
     dateborn: {
       type: Date,
+      max:"2005-08-18"
     },
     placeFav: [
       {
