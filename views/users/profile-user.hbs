@@ -18,6 +18,7 @@
 
     <h3>Lugares Favoritos</h3>
     {{#each oneUser.placeFav}}
+      <img src="{{this.placeImg}}" width="100px">
       <li>{{this.name}}</li>
       <br />
       <form action="/user/{{this._id}}/delete" method="post"><button>Eliminar

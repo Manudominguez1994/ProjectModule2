@@ -27,11 +27,10 @@ const userSchema = new Schema(
     },
     profileImg: {
       type: String,
-      default: "https://res.cloudinary.com/dwvmn4fii/image/upload/v1692024366/default-profile.jpg", 
     },
     dateborn: {
       type: Date,
-      max:"2005-08-18"
+      max: "2005-08-18",
     },
     placeFav: [
       {

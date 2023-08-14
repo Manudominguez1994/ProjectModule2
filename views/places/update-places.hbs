@@ -1,28 +1,33 @@
 <div>
-    <h2>Editamos un lugar</h2>
-     <form action="/places/{{onePlace._id}}/update" method="post">
+  <h2>Editamos un lugar</h2>
+
+  <form action="/places/{{onePlace._id}}/update" method="post" enctype="multipart/form-data">
     <label for="name">Nombre del Lugar</label>
-    <input type="text" name="name" value="{{onePlace.name}}"/>
+    <input type="text" name="name" value="{{onePlace.name}}" />
     <br />
     <br />
     <label for="location">Localización</label>
-    <input type="text" name="location" value="{{onePlace.location}}"/>
+    <input type="text" name="location" value="{{onePlace.location}}" />
     <br />
     <br />
     <label for="description">Descripción</label>
-    <input type="text" name="description" value="{{onePlace.description}}"/>
+    <input type="text" name="description" value="{{onePlace.description}}" />
     <br />
     <br />
-    <label for="placeImg">Imagen del Lugar</label>
-    <input type="file" name="placeImg" value="{{onePlace.placeImg}}"/>
+    <img src="{{onePlace.placeImg}}" alt="Imagen actual del lugar" width="150px" />
+    <br />
+    <label for="placeImg">Cambiar imagen del Lugar</label>
+    <input type="file" name="placeImg" />
     <br />
     <br />
     <label for="province">Provincia</label>
     <input type="text" name="province" value="{{onePlace.province}}" />
     <br />
     <br />
-   <button>Editar</button>
-   <form action="/places/{{placeDetails._id}}/delete" method="post"><button type="submit">Eliminar</button></form>
+    <button>Editar</button>
+    <form action="/places/{{placeDetails._id}}/delete" method="post"><button
+        type="submit"
+      >Eliminar</button></form>
     {{#if this.errorMessage}}
       <p>{{this.errorMessage}}</p>
     {{/if}}

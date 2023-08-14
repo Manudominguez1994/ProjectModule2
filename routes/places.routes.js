@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Place = require("../models/Place.model");
+const uploadImg = require("../middlewares/cloudinary.middlewares");
+
 //GET /places/:dinamico => Renderizamos la vista de nuestro lista de lugares filtrados por provincias
 router.get("/:province", async (req, res, next) => {
   
@@ -18,7 +20,7 @@ router.get("/create/place", (req, res, next) => {
   res.render("places/new-place.hbs");
 });
 //POST /places/create-place => Creamos el lugar en nuestra base de datos
-router.post("/create/place", async (req, res, next) => {
+router.post("/create/place", uploadImg.single("placeImg"), async (req, res, next) => {
   // console.log("nuevo lugar", req.body);
 
   try {
@@ -26,7 +28,7 @@ router.post("/create/place", async (req, res, next) => {
       name: req.body.name,
       location: req.body.location,
       description: req.body.description,
-      placeImg: req.body.placeImg,
+      placeImg: req.file.path,
       province: req.body.province,
     });
     // console.log("Mi nuevo lugar",newPlace);
@@ -50,6 +52,7 @@ router.get("/:placeId/details",async(req, res, next)=>{
 router.get("/:placeId/update",async(req, res, next)=>{
   try {
     const onePlace = await Place.findById(req.params.placeId)
+    //console.log(onePlace)
     res.render("places/update-places.hbs",{
       onePlace
     })
@@ -58,13 +61,15 @@ router.get("/:placeId/update",async(req, res, next)=>{
   }
 })
 //POST /place/:placeId/update
-router.post("/:placeId/update",async(req, res, next)=>{
+router.post("/:placeId/update",  uploadImg.single("placeImg"), async(req, res, next)=>{
   const placeId = req.params.placeId;
-  const {name, location, description, placeImg, province} = req.body;
+  const {name, location, description, province} = req.body;
+  const placeImg = req.file.path
   try {
-   await Place.findByIdAndUpdate(placeId,{
-    name, location, description, placeImg, province
+   const updatePlace = await Place.findByIdAndUpdate(placeId,{
+    name, location, description, placeImg, province,
    });
+   //console.log("a ver que nos muestra",updatePlace)
    res.redirect(`/places/${placeId}/details`)
 
   } catch (error) {
@@ -80,6 +85,7 @@ router.post("/:placeId/delete", async(req, res, next)=>{
     next(error)
   }
 })
+
 
 //Exportamos
 module.exports = router;

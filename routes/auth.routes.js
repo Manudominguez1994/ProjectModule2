@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const uploadImg = require("../middlewares/cloudinary.middlewares");
 const bcrypt = require("bcryptjs");
 
 const User = require("../models/User.model");
@@ -10,65 +10,78 @@ router.get("/signup", (req, res, next) => {
   res.render("auth/signup.hbs");
 });
 // POST "/auth/signup"=> recibir la info del form del usuario y crearlo en la BD
-router.post("/signup", async (req, res, next) => {
-  // console.log(req.body);
-  const { username, email, password, dateborn, profileImg } = req.body;
+router.post(
+  "/signup",
+  uploadImg.single("profileImg"),
+  async (req, res, next) => {
+    console.log("body", req.body);
+    const { username, email, password, dateborn } = req.body;
+    let profileImg;
 
-  //condicional para comprobar que todos los campos del form registro estan rellenos
-  if (username === "" || email === "" || password === "" || dateborn === "") {
-    res.status(400).render("auth/signup.hbs", {
-      errorMessage: "Debes rellenar todos los campos para registrarte",
-    });
-    return;
-  }
-  //validar que la contraseña tenga los caracteres pedidos: mayusc, minusc, caracter especial y leng: +=8
-  const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
-  if (regexPassword.test(password) === false) {
-    res.status(400).render("auth/signup.hbs", {
-      errorMessage:
-        "La contraseña debe contener mínimo una mayuscula, una minuscula, un caracter especial y tener 8 caracteres o más",
-    });
-    return;
-  }
-  try {
-    //comprobamos si el usuario existe a traves del nombre / email
-    const userFound = await User.findOne({
-      $or: [{ email: email }, { username: username }],
-    });
-    // console.log(userFound);
-    if (userFound !== null) {
+    //condicional que comprueba si el usuario ha introducido una imagen y sino le asigna una default
+    if (req.file) {
+      profileImg = req.file.path;
+    } else {
+      profileImg =
+        "https://res.cloudinary.com/dwvmn4fii/image/upload/v1692024366/default-profile.jpg";
+    }
+
+    //condicional para comprobar que todos los campos del form registro estan rellenos
+    if (username === "" || email === "" || password === "" || dateborn === "") {
       res.status(400).render("auth/signup.hbs", {
-        errorMessage:
-          "Ya existe un usuario con el mismo nombre de usuario o correo electronico",
+        errorMessage: "Debes rellenar todos los campos para registrarte",
       });
       return;
     }
-    //ciframos password
-    const salt = await bcrypt.genSalt(10);
-    const passwordHash = await bcrypt.hash(password, salt);
+    //validar que la contraseña tenga los caracteres pedidos: mayusc, minusc, caracter especial y leng: +=8
+    const regexPassword =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
+    if (regexPassword.test(password) === false) {
+      res.status(400).render("auth/signup.hbs", {
+        errorMessage:
+          "La contraseña debe contener mínimo una mayuscula, una minuscula, un caracter especial y tener 8 caracteres o más",
+      });
+      return;
+    }
+    try {
+      //comprobamos si el usuario existe a traves del nombre / email
+      const userFound = await User.findOne({
+        $or: [{ email: email }, { username: username }],
+      });
+      // console.log(userFound);
+      if (userFound !== null) {
+        res.status(400).render("auth/signup.hbs", {
+          errorMessage:
+            "Ya existe un usuario con el mismo nombre de usuario o correo electronico",
+        });
+        return;
+      }
+      //ciframos password
+      const salt = await bcrypt.genSalt(10);
+      const passwordHash = await bcrypt.hash(password, salt);
 
-
-    // console.log(passwordHash);
-    await User.create({
-      username: username,
-      email: email,
-      password: passwordHash,
-      dateborn: dateborn,
-      profileImg: profileImg
-    });
-    // lo ultimo que ocurrira cuando se ejecute todo...
-    res.redirect("/auth/login");
-  } catch (error) {
-    next(error);
+      // console.log(passwordHash);
+      console.log("el valor de nuestra img", profileImg);
+      await User.create({
+        username: username,
+        email: email,
+        password: passwordHash,
+        dateborn: dateborn,
+        profileImg: profileImg,
+      });
+      res.redirect("/auth/login");
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 //GET /auth/login => Renderiza la vista del login
 router.get("/login", (req, res, next) => {
   res.render("auth/login.hbs");
 });
 //POST /auth/login => Recibe las credenciales del usuario y valida/autentica
 router.post("/login", async (req, res, next) => {
-  const {email , password} = req.body
+  const { email, password } = req.body;
   try {
     //Verificacion de que el usuario esta creado
     //Verificacion Email
@@ -106,7 +119,7 @@ router.post("/login", async (req, res, next) => {
 // GET "/auth/logout" => el usuario puede cerrar su sesion activa
 router.get("/logout", (req, res, next) => {
   req.session.destroy(() => {
-    res.redirect("/")
-  })
-})
+    res.redirect("/");
+  });
+});
 module.exports = router;

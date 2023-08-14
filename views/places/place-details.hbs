@@ -3,7 +3,7 @@
    {{#each placeDetails}}
    <p>{{this.location}}</p>
    <p>{{this.description}}</p>
-   <img src="{{this.placeImg}}" alt="">
+   <img src="{{this.placeImg}}" alt="" width="200px">
    {{/each}}
 
    <form action="/user/{{placeDetails._id}}/fav" method="post"><button>Favorito</button></form>

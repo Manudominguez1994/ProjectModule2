@@ -2,7 +2,7 @@
     <h2>Lista de todos los lugares de {{allPlaces.[0].province}}</h2>
     {{#each allPlaces}}
     <h3>{{this.name}} </h3>
-    <img src="{{this.placeImg}}" alt="">
+    <img src="{{this.placeImg}}" alt="" width="200px">
     <a href="/places/{{this._id}}/details"><button>Detalles</button></a>
     {{/each}}
 </div>
