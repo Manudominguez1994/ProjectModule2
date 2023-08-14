@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-
+const provincesPlaces = require("../utils/provinces.js")
 const placeSchema = new Schema({
   name: {
     type: String,
@@ -20,7 +20,7 @@ const placeSchema = new Schema({
   },
   province: {
     type: String,
-    enum: ["Almería","Cádiz","Córdoba","Granada","Huelva","Jaén","Málaga","Sevilla"],
+    enum: provincesPlaces,
   },
 });
 

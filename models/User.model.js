@@ -27,7 +27,7 @@ const userSchema = new Schema(
     },
     profileImg: {
       type: String,
-      default: String,
+      default: "https://res.cloudinary.com/dwvmn4fii/image/upload/v1692024366/default-profile.jpg", 
     },
     dateborn: {
       type: Date,

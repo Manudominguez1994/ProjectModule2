@@ -2,20 +2,30 @@
   <h2>Perfil de usuario</h2>
 
   <h2>{{oneUser.username}}</h2>
-  <img src="{{oneUser.profileImg}}" alt="" />
+  <img src="{{oneUser.profileImg}}" alt="imagen-perfil" width="100px" />
   <p>{{oneUser.email}}</p>
-  <p>{{oneUser.dateborn}}</p>
+  <p>{{this.dateborn}}</p>
   <div>
+
+    <div>
+      <h4>Cambiar imagen de perfil</h4>
+      <form action="/user/upload-profile-img" method="post" enctype="multipart/form-data">
+        <label for="profileImg">Imagen de Perfil</label>
+        <input type="file" name="profileImg" />
+        <button>Cambiar</button>
+      </form>
+    </div>
 
     <h3>Lugares Favoritos</h3>
     {{#each oneUser.placeFav}}
       <li>{{this.name}}</li>
-      <br>
-      <form action="/user/{{this._id}}/delete" method="post"><button>Eliminar Fav</button></form>
-      <br>
+      <br />
+      <form action="/user/{{this._id}}/delete" method="post"><button>Eliminar
+          Fav</button></form>
+      <br />
       <a href="/places/{{this._id}}/details"><button>Detalles</button></a>
-      <br>
+      <br />
     {{/each}}
-  </div> 
+  </div>
 
 </div>

@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const provincesPlaces = require("../utils/provinces.js")
 
 //funciona que actualiza las variables en las diferentes llamadas
 const { updateLocals } = require("../middlewares/auth.middlewares");
@@ -7,7 +8,7 @@ router.use(updateLocals);
 
 /* GET home page */
 router.get("/", (req, res, next) => {
-  res.render("index");
+  res.render("index", {provincesPlaces});
 });
 
 const authRouter = require("./auth.routes.js");

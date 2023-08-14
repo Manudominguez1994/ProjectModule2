@@ -1,60 +1,7 @@
 <div>
-
-        <h2>Disfruta del turismo en Andalucía</h2>
-
-          <table>   
-            <tr>       
-                <td>
-                <h4>Almería</h4>
+    {{#each provincesPlaces}}
+                <h4>{{this}}</h4>
                 <br>
-                <a href="/places/Almería"><button>Detalles</button></a>
-                </td>
-
-                <td>
-                <h4>Cádiz</h4>
-                <br>
-                <a href="/places/Cádiz"><button>Detalles</button></a>
-                </td>
-
-                <td>
-                <h4>Córdoba</h4>
-                <br>
-                <a href="/places/Córdoba"><button>Detalles</button></a>
-                </td>
-                
-                <td>
-                <h4>Granada</h4>
-                <br>
-                <a href="/places/Granada"><button>Detalles</button></a>
-                </td>
-            </tr>  
-
-            <tr>       
-                <td>
-                <h4>Huelva</h4>
-                <br>
-                <a href="/places/Huelva"><button>Detalles</button></a>
-                </td>
-
-                <td>
-                <h4>Jaén</h4>
-                <br>
-                <a href="/places/Jaén"><button>Detalles</button></a>
-                </td>
-
-                <td>
-                <h4>Málaga</h4>
-                <br>
-                <a href="/places/Málaga"><button>Detalles</button></a>
-                </td>
-                
-                <td>
-                <h4>Sevilla</h4>
-                <br>
-                <a href="/places/Sevilla"><button>Detalles</button></a>
-                </td>
-            </tr>  
-        </table>
+                <a href="/places/{{this}}"><button>Detalles</button></a>
+     {{/each}}
 </div>
-
-    

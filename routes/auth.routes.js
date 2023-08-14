@@ -49,16 +49,11 @@ router.post("/signup", async (req, res, next) => {
 
 
     // console.log(passwordHash);
-
-    const fechaNac = new Date(dateborn)
-    fechaNac.toDateString()
-    fechaNac.substring(0,10)
-    console.log("esta es la fecha de nac",fechaNac)
     await User.create({
       username: username,
       email: email,
       password: passwordHash,
-      dateborn: fechaNac,
+      dateborn: dateborn,
       profileImg: profileImg
     });
     // lo ultimo que ocurrira cuando se ejecute todo...
