@@ -22,14 +22,11 @@
                <a href="/auth/logout">Cerrar Sesión</a>
             {{/unless}}
          {{/if}}
-
-         
          {{#if isAdminActive}}
-            <a href="/user/profile/">Mi Perfil</a>
             <a href="/auth/logout">Cerrar Sesión</a>
             <a href="/places/create/place">Crear Nuevo Lugar</a>
+            <a href="/user/list-users">Lista de usuarios</a>
          {{/if}}     
-
          {{#unless isUserActive}}       
          <a href="/auth/login">Inicio de sesion</a>
          <a href="/auth/signup">Registrarse</a>

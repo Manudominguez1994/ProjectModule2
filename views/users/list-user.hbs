@@ -1,0 +1,12 @@
+<div>
+    <h2>Lista con todos los usuarios</h2>
+    
+    {{#each allUsers}}
+        <img src="{{this.profileImg}}" alt="" width="200px">
+        <h4>{{this.username}}</h4>
+        <p>{{this.email}}</p>
+        <div>
+        <form action="/user/delete/{{this._id}}" method="post"><button type="submit">Eliminar Usuario</button></form>
+        </div>
+    {{/each}}
+</div>

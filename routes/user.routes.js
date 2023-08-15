@@ -33,7 +33,6 @@ router.post("/:placeId/fav", isLoggedIn, async (req, res, next) => {
     next(error);
   }
 });
-
 //POST /user/:placeId/fav => Eliminamos el lugar de sitios favoritos de la base de datos los lugares
 router.post("/:placeId/delete", isLoggedIn, async (req, res, next) => {
   try {
@@ -47,7 +46,6 @@ router.post("/:placeId/delete", isLoggedIn, async (req, res, next) => {
     next(error);
   }
 });
-
 //POST /user/upload-profile-img => Actualizamos la imagen de perfil del usuario
 router.post("/upload-profile-img", uploadImg.single("profileImg"), async  (req, res, next) => {
 
@@ -59,6 +57,25 @@ try { // buscamos el usuario que está subiendo esa imagen y cambiamos su profil
 catch (error) {
   next(error);
  }
+})
+//GET /user/list-users => listamos todo los usuarios de nuestra web
+router.get("/list-users",async(req, res, next)=>{
+  try {
+    const allUsers = await User.find({role:"user"})
+    res.render("users/list-user.hbs",{allUsers})
+  } catch (error) {
+    next(error)
+  }
+})
+//POST /user/delete => Ruta para borrar un usuario
+router.post("/delete/:userId", async(req, res, next)=>{
+  try {
+    const oneUser = await User.findByIdAndDelete(req.params.userId)
+    console.log("user que borraremos", oneUser);
+    res.redirect(`/user/list-users`)
+  } catch (error) {
+    next(error)
+  }
 })
 
 module.exports = router;
