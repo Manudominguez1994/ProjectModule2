@@ -15,13 +15,31 @@
 
     <div>
         <form action="/comment/create/{{placeDetails._id}}" method="post">
+            <label for="valoration">Valoracion del lugar</label>
+            <br>
+            <br>
+           <div class="rating">
+            <input type="radio" id="star5" name="valoration" value="5">
+            <label for="star5"></label>
+            <input type="radio" id="star4" name="valoration" value="4">
+            <label for="star4"></label>
+            <input type="radio" id="star3" name="valoration" value="3">
+            <label for="star3"></label>
+            <input type="radio" id="star2" name="valoration" value="2">
+            <label for="star2"></label>
+            <input type="radio" id="star1" name="valoration" value="1">
+            <label for="star1"></label>
+            </div>
+            <br>
+            <br>
             <textarea name="description" id="" cols="30" rows="10" placeholder="Deja aqui tu reseña!"></textarea>
-            <button>Publicar</button>
+            <button type="submit">Publicar</button>
         </form>
     </div>
     <div>
         {{#each cloneAllComments}}
-            <h4>{{this.owner.username}}</h4>
+            <h4>{{this.owner.username}}</h4><span>Valoracion: {{this.valoration}}<i></i></span>
+           
             <p>{{this.description}}</p>     
             <p>{{this.date}}</p>
         {{#if ../isAdminActive}} 

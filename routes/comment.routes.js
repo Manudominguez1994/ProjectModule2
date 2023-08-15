@@ -14,7 +14,7 @@ router.post("/create/:placeId", async (req, res, next) => {
     const newCommment = await Comment.create({
       owner: req.session.user._id,
       description: req.body.description,
-      valoration: req.body.valoration,
+      valoration: parseInt(req.body.valoration),
       place: thisPlace,
       date: currentDate
     });
