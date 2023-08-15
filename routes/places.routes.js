@@ -45,11 +45,16 @@ router.get("/:placeId/details",isLoggedIn,async(req, res, next)=>{
   try {
     const allComments = await Comment.find()
     .populate("owner")
-    .populate("place")
+    .populate("place");
+     
     const placeDetails = await Place.findById(req.params.placeId)
-    // console.log(placeDetails);
-     console.log("todos mis comentarios", allComments);
-    res.render("places/place-details.hbs",{placeDetails, allComments})
+    const cloneAllComments = JSON.parse(JSON.stringify(allComments))
+    cloneAllComments.forEach((eachComment) => {
+       console.log("cada comentario",eachComment);
+      eachComment.date = new Date(eachComment.date).toLocaleString();
+    });
+    console.log("todos mis comentarios", cloneAllComments);
+    res.render("places/place-details.hbs",{placeDetails, cloneAllComments})
   } catch (error) {
     next(error)
   }

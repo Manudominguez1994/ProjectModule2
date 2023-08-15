@@ -20,9 +20,10 @@
         </form>
     </div>
     <div>
-        {{#each allComments}}
+        {{#each cloneAllComments}}
             <h4>{{this.owner.username}}</h4>
             <p>{{this.description}}</p>     
+            <p>{{this.date}}</p>
         {{#if ../isAdminActive}} 
                 <form action="/comment/delete/{{this.place._id}}/{{this._id}}" method="post"><button type="submit">Eliminar Comentario</button></form>
         {{/if}} 

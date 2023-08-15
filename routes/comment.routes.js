@@ -7,14 +7,18 @@ const { isLoggedIn, isAdmin,updateLocals } = require("../middlewares/auth.middle
 
 //POST /comment/create => Creamos un comentario en nuestra seccion de detalles de los lugares
 router.post("/create/:placeId", async (req, res, next) => {
+  
   try {
+    const currentDate = new Date().getTime()
     const thisPlace = await Place.findById(req.params.placeId);
     const newCommment = await Comment.create({
       owner: req.session.user._id,
       description: req.body.description,
       valoration: req.body.valoration,
       place: thisPlace,
+      date: currentDate
     });
+    console.log("comentario",newCommment);
     res.redirect(`/places/${thisPlace._id}/details`)
     //console.log(newCommment);
   } catch (error) {
