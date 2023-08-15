@@ -26,6 +26,18 @@ router.post("/create/place", uploadImg.single("placeImg"), async (req, res, next
   // console.log("nuevo lugar", req.body);
 
   try {
+    //comprobamos si hay un lugar con el mismo nombre o localización
+    const placeFound = await Place.findOne({
+      $or: [{ name: req.body.name }, { location: req.body.location }],
+    });
+
+    if (placeFound !== null) {
+      res.status(400).render("places/new-place.hbs", {
+        errorMessage:
+          "Ya existe un lugar con el mismo nombre o localización",
+      });
+      return;
+    }
     const newPlace = await Place.create({
       name: req.body.name,
       location: req.body.location,
@@ -59,7 +71,7 @@ router.get("/:placeId/details",isLoggedIn,async(req, res, next)=>{
     next(error)
   }
 })
-//GET /places/:placeId/update
+//GET /places/:placeId/update => Renderizamos vista para editar nuestro lugar
 router.get("/:placeId/update",isAdmin,async(req, res, next)=>{
   try {
     const onePlace = await Place.findById(req.params.placeId)
@@ -71,7 +83,7 @@ router.get("/:placeId/update",isAdmin,async(req, res, next)=>{
     next(error)
   }
 })
-//POST /place/:placeId/update
+//POST /place/:placeId/update => Actualizamos los datos de DB
 router.post("/:placeId/update",  uploadImg.single("placeImg"), async(req, res, next)=>{
   const placeId = req.params.placeId;
   const {name, location, description, province} = req.body;
@@ -87,7 +99,7 @@ router.post("/:placeId/update",  uploadImg.single("placeImg"), async(req, res, n
     next(error)
   }
 })
-//POST /place/:placeId/delete
+//POST /place/:placeId/delete => Borramos un lugar de DB 
 router.post("/:placeId/delete", async(req, res, next)=>{
   try {
     const onePlace = await Place.findByIdAndDelete(req.params.placeId)
