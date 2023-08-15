@@ -11,6 +11,9 @@ router.get("/", (req, res, next) => {
   res.render("index", {provincesPlaces});
 });
 
+const commentRouter = require("./comment.routes.js");
+router.use("/comment", commentRouter);
+
 const authRouter = require("./auth.routes.js");
 router.use("/auth", authRouter);
 

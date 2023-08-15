@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Place = require("../models/Place.model");
+const Comment = require("../models/Comments.model");
 const uploadImg = require("../middlewares/cloudinary.middlewares");
+const { isLoggedIn, isAdmin } = require("../middlewares/auth.middlewares");
 
 //GET /places/:dinamico => Renderizamos la vista de nuestro lista de lugares filtrados por provincias
 router.get("/:province", async (req, res, next) => {
@@ -38,18 +40,22 @@ router.post("/create/place", uploadImg.single("placeImg"), async (req, res, next
   }
 });
 //GET /places/:placeId=> Renderizamos la vista de detalles de un lugar
-router.get("/:placeId/details",async(req, res, next)=>{
+router.get("/:placeId/details",isLoggedIn,async(req, res, next)=>{
   // const {placeId} = req.params
   try {
+    const allComments = await Comment.find()
+    .populate("owner")
+    .populate("place")
     const placeDetails = await Place.findById(req.params.placeId)
     // console.log(placeDetails);
-    res.render("places/place-details.hbs",{placeDetails})
+    // console.log("todos mis comentarios", allComments);
+    res.render("places/place-details.hbs",{placeDetails, allComments})
   } catch (error) {
     next(error)
   }
 })
 //GET /places/:placeId/update
-router.get("/:placeId/update",async(req, res, next)=>{
+router.get("/:placeId/update",isAdmin,async(req, res, next)=>{
   try {
     const onePlace = await Place.findById(req.params.placeId)
     //console.log(onePlace)
