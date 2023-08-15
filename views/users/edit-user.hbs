@@ -1,0 +1,26 @@
+<div>
+    <h2>Editar usuario</h2>
+    <div>
+  <h2>Editamos un lugar</h2>
+
+ <form action="/user/update" method="post" enctype="multipart/form-data">
+    <label for="username">Nombre</label>
+    <input type="text" name="username" value="{{oneUser.username}}">
+    <br>
+    <label for="email">Email</label>
+    <input type="email" name="email" value="{{oneUser.email}}">
+    <br>
+    <label for="dateborn">Fecha de Nacimiento</label>
+    <input type="date" name="dateborn" value="{{oneUser.dateborn}}">
+    <br>
+    <img src="{{oneUser.profileImg}}" alt="imagen-perfil" width="100px" />
+    <h4>Cambiar imagen de perfil</h4>
+    <label for="profileImg">Imagen de Perfil</label>
+    <input type="file" name="profileImg" />
+    <button type="submit">Actualizar perfil</button>
+    {{#if this.errorMessage}} 
+      <p>{{this.errorMessage}}</p>
+    {{/if}}
+  </form>
+ 
+</div>

@@ -6,15 +6,15 @@
   <p>{{oneUser.email}}</p>
   <p>{{this.dateborn}}</p>
   <div>
-
-    <div>
+    <a href="/user/update"><button>Editar Perfil</button></a>
+    {{!-- <div>
       <h4>Cambiar imagen de perfil</h4>
       <form action="/user/upload-profile-img" method="post" enctype="multipart/form-data">
         <label for="profileImg">Imagen de Perfil</label>
         <input type="file" name="profileImg" />
         <button>Cambiar</button>
       </form>
-    </div>
+    </div> --}}
 
     <h3>Lugares Favoritos</h3>
     {{#each oneUser.placeFav}}

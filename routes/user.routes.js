@@ -47,17 +47,17 @@ router.post("/:placeId/delete", isLoggedIn, async (req, res, next) => {
   }
 });
 //POST /user/upload-profile-img => Actualizamos la imagen de perfil del usuario
-router.post("/upload-profile-img", uploadImg.single("profileImg"), async  (req, res, next) => {
+// router.post("/upload-profile-img", uploadImg.single("profileImg"), async  (req, res, next) => {
 
-  //console.log(req.file)
-try { // buscamos el usuario que está subiendo esa imagen y cambiamos su profileImg por el req.file.path de cloudinary
-  await User.findByIdAndUpdate(req.session.user._id, {profileImg: req.file.path})
-  res.redirect("/user/profile")
-} 
-catch (error) {
-  next(error);
- }
-})
+//   //console.log(req.file)
+// try { // buscamos el usuario que está subiendo esa imagen y cambiamos su profileImg por el req.file.path de cloudinary
+//   await User.findByIdAndUpdate(req.session.user._id, {profileImg: req.file.path})
+//   res.redirect("/user/profile")
+// } 
+// catch (error) {
+//   next(error);
+//  }
+// })
 //GET /user/list-users => listamos todo los usuarios de nuestra web
 router.get("/list-users",async(req, res, next)=>{
   try {
@@ -67,7 +67,7 @@ router.get("/list-users",async(req, res, next)=>{
     next(error)
   }
 })
-//POST /user/delete => Ruta para borrar un usuario
+//POST /user/delete/:userId => Ruta para borrar un usuario
 router.post("/delete/:userId", async(req, res, next)=>{
   try {
     const oneUser = await User.findByIdAndDelete(req.params.userId)
@@ -77,5 +77,27 @@ router.post("/delete/:userId", async(req, res, next)=>{
     next(error)
   }
 })
-
+//GET /user/update/=> renderizamos la vista de editar usuario
+router.get("/update",async(req, res, next)=>{
+  try {
+    const oneUser = await User.findById(req.session.user._id)
+    res.render("users/edit-user.hbs",{oneUser})
+  } catch (error) {
+    next(error)
+  }
+})
+//POST /user/update/ => actualizamos la informacion de la DB del usuario
+router.post("/update",uploadImg.single("profileImg"),async(req, res, next)=>{
+  const {username, email, dateborn} = req.body
+  try {
+    await User.findByIdAndUpdate(req.session.user._id, {profileImg: req.file.path})
+    const userUpdate = await User.findByIdAndUpdate(req.session.user._id,{
+      username, email, dateborn
+    })
+    console.log("usuario actualizado",userUpdate );
+    res.redirect("/user/profile")
+  } catch (error) {
+    next(error)
+  }
+})
 module.exports = router;
