@@ -1,4 +1,4 @@
-<div>
+{{!-- <div>
     <h2>Lista con todos los usuarios</h2>
     
     {{#each allUsers}}
@@ -9,4 +9,26 @@
         <form action="/user/delete/{{this._id}}" method="post"><button type="submit">Eliminar Usuario</button></form>
         </div>
     {{/each}}
-</div>
+</div> --}}
+
+<table>
+    <h2>Lista con todos los usuarios</h2>
+    <thead>
+        <tr>
+            <th>Foto de Perfil</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Borrar Usuario</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each allUsers}}
+        <tr>
+            <td> <img src="{{this.profileImg}}" alt="" width="80px" height="100px"></td>
+            <td>{{this.username}}</td>
+            <td>{{this.email}}</td>
+            <td><form action="/user/delete/{{this._id}}" method="post"><button type="submit">Eliminar Usuario</button></form></td>
+        </tr>
+          {{/each}}
+    </tbody>
+</table>
