@@ -48,7 +48,7 @@ router.get("/:placeId/details",isLoggedIn,async(req, res, next)=>{
     .populate("place")
     const placeDetails = await Place.findById(req.params.placeId)
     // console.log(placeDetails);
-    // console.log("todos mis comentarios", allComments);
+     console.log("todos mis comentarios", allComments);
     res.render("places/place-details.hbs",{placeDetails, allComments})
   } catch (error) {
     next(error)
@@ -91,7 +91,5 @@ router.post("/:placeId/delete", async(req, res, next)=>{
     next(error)
   }
 })
-
-
 //Exportamos
 module.exports = router;

@@ -21,8 +21,11 @@
     </div>
     <div>
         {{#each allComments}}
-        <h4>{{this.owner.username}}</h4>
-        <p>{{this.description}}</p>
+            <h4>{{this.owner.username}}</h4>
+            <p>{{this.description}}</p>     
+        {{#if ../isAdminActive}} 
+                <form action="/comment/delete/{{this.place._id}}/{{this._id}}" method="post"><button type="submit">Eliminar Comentario</button></form>
+        {{/if}} 
         {{/each}}
     </div>
 </div>
