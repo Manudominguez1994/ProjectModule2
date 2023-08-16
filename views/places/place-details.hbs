@@ -1,7 +1,7 @@
 <div>
    <h2>Aqui los detalles de {{placeDetails.name}}</h2>
    {{#each placeDetails}}
-   <p>{{this.location}}</p>
+   <a href="{{this.location}}">Ubicacion del lugar</a>
    <p>{{this.description}}</p>
    <img src="{{this.placeImg}}" alt="" width="200px">
    {{/each}}
