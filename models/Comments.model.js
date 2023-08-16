@@ -10,14 +10,14 @@ const commentSchema = new Schema({
     type: String,
     required: true,
   },
-  valoration: Number,
+  valoration: String,
   place: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Place",
   },
-  date :{
-    type:Date
-  }
+  date: {
+    type: Date,
+  },
 });
 
 const Comment = model("Comment", commentSchema);

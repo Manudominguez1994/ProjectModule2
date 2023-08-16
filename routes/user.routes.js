@@ -8,9 +8,10 @@ const { isLoggedIn } = require("../middlewares/auth.middlewares");
 
 //GET /user/:userId => Renderizamos la vista del perfil de usuario
 router.get("/profile", isLoggedIn, async (req, res, next) => {
- 
   try {
-    const oneUser = await User.findById(req.session.user._id).populate("placeFav");
+    const oneUser = await User.findById(req.session.user._id).populate(
+      "placeFav"
+    );
 
     const dateborn = oneUser.dateborn.toDateString();
     console.log("esta es la fecha to String", dateborn);
@@ -47,45 +48,62 @@ router.post("/:placeId/delete", isLoggedIn, async (req, res, next) => {
   }
 });
 //GET /user/list-users => listamos todo los usuarios de nuestra web
-router.get("/list-users",async(req, res, next)=>{
+router.get("/list-users", async (req, res, next) => {
   try {
-    const allUsers = await User.find({role:"user"})
-    res.render("users/list-user.hbs",{allUsers})
+    const allUsers = await User.find({ role: "user" });
+    res.render("users/list-user.hbs", { allUsers });
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
+});
 //POST /user/delete/:userId => Ruta para borrar un usuario
-router.post("/delete/:userId", async(req, res, next)=>{
+router.post("/delete/:userId", async (req, res, next) => {
   try {
-    const oneUser = await User.findByIdAndDelete(req.params.userId)
+    const oneUser = await User.findByIdAndDelete(req.params.userId);
     console.log("user que borraremos", oneUser);
-    res.redirect(`/user/list-users`)
+    res.redirect(`/user/list-users`);
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
+});
 //GET /user/update/=> renderizamos la vista de editar usuario
-router.get("/update",async(req, res, next)=>{
+router.get("/update", async (req, res, next) => {
   try {
-    const oneUser = await User.findById(req.session.user._id)
-    res.render("users/edit-user.hbs",{oneUser})
+    const oneUser = await User.findById(req.session.user._id);
+    res.render("users/edit-user.hbs", { oneUser });
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
+});
 //POST /user/update/ => actualizamos la informacion de la DB del usuario
-router.post("/update",uploadImg.single("profileImg"),async(req, res, next)=>{
-  const {username, email, dateborn} = req.body
-  try {
-    await User.findByIdAndUpdate(req.session.user._id, {profileImg: req.file.path})
-    const userUpdate = await User.findByIdAndUpdate(req.session.user._id,{
-      username, email, dateborn
-    })
-    console.log("usuario actualizado",userUpdate );
-    res.redirect("/user/profile")
-  } catch (error) {
-    next(error)
+router.post(
+  "/update",
+  uploadImg.single("profileImg"),
+  async (req, res, next) => {
+    const { username, email, dateborn } = req.body;
+    try {
+      let datebornToUpdate = req.session.user.dateborn;
+      let profileImgUpdate = req.session.user.profileImg;
+      //condicional que si no introduces fecha nueva no actualiza y deja la anterior
+      if (dateborn) {
+        datebornToUpdate = dateborn;
+      }
+      //condicional que si no introduces foto nueva no actualiza y deja la anterior
+      if (req.file) {
+        profileImgUpdate = req.file.path;
+      }
+      //await User.findByIdAndUpdate(req.session.user._id, {profileImg: req.file.path})
+      const userUpdate = await User.findByIdAndUpdate(req.session.user._id, {
+        username,
+        email,
+        dateborn: datebornToUpdate,
+        profileImg: profileImgUpdate,
+      });
+      console.log("usuario actualizado", userUpdate);
+      res.redirect("/user/profile");
+    } catch (error) {
+      next(error);
+    }
   }
-})
+);
 module.exports = router;
