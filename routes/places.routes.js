@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Place = require("../models/Place.model");
 const Comment = require("../models/Comments.model");
+const pronvincesArr = require("../utils/provinces");
 const uploadImg = require("../middlewares/cloudinary.middlewares");
 const { isLoggedIn, isAdmin } = require("../middlewares/auth.middlewares");
 
@@ -19,22 +20,21 @@ router.get("/:province", async (req, res, next) => {
 });
 //GET /places/create-place=> Renderizamos la vista de crear un lugar
 router.get("/create/place", (req, res, next) => {
-  res.render("places/new-place.hbs");
+  res.render("places/new-place.hbs",{pronvincesArr});
 });
 //POST /places/create-place => Creamos el lugar en nuestra base de datos
 router.post("/create/place", uploadImg.single("placeImg"), async (req, res, next) => {
   // console.log("nuevo lugar", req.body);
-
   try {
     //comprobamos si hay un lugar con el mismo nombre o localización
     const placeFound = await Place.findOne({
       $or: [{ name: req.body.name }, { location: req.body.location }],
     });
-
     if (placeFound !== null) {
-      res.status(400).render("places/new-place.hbs", {
+      res.status(400).render("places/new-place.hbs",{
         errorMessage:
           "Ya existe un lugar con el mismo nombre o localización",
+        pronvincesArr
       });
       return;
     }
@@ -55,7 +55,7 @@ router.post("/create/place", uploadImg.single("placeImg"), async (req, res, next
 router.get("/:placeId/details",isLoggedIn,async(req, res, next)=>{
   // const {placeId} = req.params
   try {
-    const allComments = await Comment.find()
+    const allComments = await Comment.find({place: req.params.placeId})
     .populate("owner")
     .populate("place");
      

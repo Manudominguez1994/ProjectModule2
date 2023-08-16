@@ -17,8 +17,12 @@
     <input type="file" name="placeImg" />
     <br />
     <br />
-    <label for="province">Provincia</label>
-    <input type="text" name="province" />
+    <label for="province">Provincias</label>
+    <select name="province" >
+      {{#each pronvincesArr}}
+      <option >{{this}}</option>
+      {{/each}}
+    </select>
     <br />
     <br />
    <button>Añadir</button>

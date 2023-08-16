@@ -36,10 +36,10 @@
             <button type="submit">Publicar</button>
         </form>
     </div>
+    
     <div>
         {{#each cloneAllComments}}
-            <h4>{{this.owner.username}}</h4><span>Valoracion: {{this.valoration}}<i></i></span>
-           
+            <h4>{{this.owner.username}}</h4><span>Valoracion: {{this.valoration}}<i></i></span>           
             <p>{{this.description}}</p>     
             <p>{{this.date}}</p>
         {{#if ../isAdminActive}} 
