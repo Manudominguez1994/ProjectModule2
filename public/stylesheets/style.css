@@ -41,10 +41,10 @@ h1 {
 
 .div-Home {
   background-image: url("../images/background-andalucia.jpg");
-  background-size: cover; 
-  background-repeat: no-repeat; 
-  width: 100vw; 
-  height: 100vh; 
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,10 +70,11 @@ h1 {
   color: white;
 }
 
-.h1-Home{
-  color: white!important;
+.h1-Home {
+  color: white !important;
   font-weight: bold;
   font-style: italic;
+  font-size: 3rem;
 }
 
 .p-Home {
@@ -93,19 +94,78 @@ h1 {
   text-decoration: double;
 }
 
-.row{
-  margin-top: 90px!important;
+.row {
+  margin-top: 90px !important;
 }
 
 .card {
-  background-color: #164d49!important;
+  background-color: #164d49 !important;
   color: white;
 }
 
 #buttonHome {
   color: black;
   background-color: white;
+  border: none;
+  transition: border 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
-.btn-primary{border: none!important;}
+#buttonNav {
+  transition: border 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  border-radius: 20px;
+}
 
+#buttonNav:hover {
+  border: 1px solid #164d49;
+  background-color: white;
+  color: #164d49;
+
+}
+
+.btn-primary {
+  border: none !important;
+}
+
+.table {
+  margin-top: 80px;
+}
+
+.h1title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 3rem;
+  margin-top: 50px;
+}
+
+.placeDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh; 
+  text-align: center;
+}
+
+.placeDetails {
+  margin-top: 80px; 
+}
+
+#buttonDetails {
+  background-color: #164d49;
+  margin-top:20px
+}
+
+#buttonDetails:hover {
+  border: 1px solid #164d49!important;
+  background-color: white;
+  color: #164d49;
+}
+
+#buttonCreate {
+  background-color: #164d49;
+}
+
+#buttonCreate:hover {
+  border: 1px solid #164d49!important;
+  background-color: white;
+  color: #164d49;
+}
