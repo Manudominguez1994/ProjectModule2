@@ -1,28 +1,37 @@
-<div>
-   <h2>Aqui los detalles de {{placeDetails.name}}</h2>
-   <a href="{{placeDetails.location}}" target="_blank">Ubicacion del lugar</a>
-   <p>{{placeDetails.description}}</p>
-   <img src="{{placeDetails.placeImg}}" alt="" width="200px">
+<div class="container mt-4 detailbodysite">
+  <div class="card detailsite">
+    <div class="card-body ">
+        <h2 class="card-title">Aqui los detalles de {{placeDetails.name}}</h2>
+        <a href="{{placeDetails.location}}" target="_blank" class="card-link">Ubicacion del lugar</a>
+        <p class="card-text">{{placeDetails.description}}</p>
+        <img src="{{placeDetails.placeImg}}" alt="" width="200px" class="img-fluid">
 
-    {{#if isUserActive}}
+        {{#if isUserActive}}
         {{#unless isAdminActive}}
-            {{#if placeInFav}}
-                <form action="/user/{{placeDetails._id}}/delete" method="post"><button>Quitar favorito</button></form>
-            {{else}}
-                <form action="/user/{{placeDetails._id}}/fav" method="post"><button>Añadir favorito</button></form>
-            {{/if}}
+          {{#if placeInFav}}
+            <form action="/user/{{placeDetails._id}}/delete" method="post">
+              <button class="heart-button filled"><i class="fas fa-heart"></i>&#x2665; </button>
+            </form>
+          {{else}}
+            <form action="/user/{{placeDetails._id}}/fav" method="post">
+              <button class="heart-button"><i class="far fa-heart"></i>&#x2661; </button>
+            </form>
+          {{/if}}
         {{/unless}}
-    {{/if}}
+      {{/if}}
 
 
-   {{#if isAdminActive}}
-   <a href="/places/{{placeDetails._id}}/update"><button>Editar</button></a>
-   <form action="/places/{{placeDetails._id}}/delete" method="post"><button type="submit">Eliminar</button></form>
-    {{/if}}
-    <div>
+        {{#if isAdminActive}}
+        <a href="/places/{{placeDetails._id}}/update"><button class="btn btn-warning">Editar</button></a>
+        <form action="/places/{{placeDetails._id}}/delete" method="post"><button type="submit" class="btn btn-danger">Eliminar</button></form>
+          {{/if}}
+          </div>
+    </div>
+    <div  class="card mt-4 valorationclass">
+      <div class="card-body">
         <form action="/comment/create/{{placeDetails._id}}" method="post">
             <label for="valoration">Valoracion del lugar</label>
-            <br>
+            
             <br>
            <div class="rating">
             <input type="radio" id="star5" name="valoration" value="5">
@@ -36,21 +45,24 @@
             <input type="radio" id="star1" name="valoration" value="1">
             <label for="star1"></label>
             </div>
-            <br>
+            
             <br>
             <textarea name="description" id="" cols="60" rows="10" placeholder="Deja aqui tu reseña!"></textarea>
-            <button type="submit">Publicar</button>
+            <button type="submit" class="btn btn-success mt-3">Publicar</button>
         </form>
+        </div>
     </div>
     
-    <div>
+    <div class="card mt-4 valoraciones">
+      <div class="card-body">
         {{#each cloneAllComments}}
             <h4>{{this.owner.username}}</h4>Valoracion:<span>{{this.valoration}}</span>           
             <p>{{this.description}}</p>     
             <p>{{this.date}}</p>
         {{#if ../isAdminActive}} 
-                <form action="/comment/delete/{{this.place._id}}/{{this._id}}" method="post"><button type="submit">Eliminar Comentario</button></form>
+                <form action="/comment/delete/{{this.place._id}}/{{this._id}}" method="post"><button type="submit" class="btn btn-danger">Eliminar Comentario</button></form>
         {{/if}} 
         {{/each}}
+        </div>
     </div>
 </div>
