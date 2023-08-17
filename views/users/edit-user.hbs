@@ -1,8 +1,6 @@
-<div class="profile-section" >
-    <h2>Editar usuario</h2>
+  <div class="profile-section" >
+      <h2>Editar Usuario</h2>
     <div>
-  <h2>Editamos un lugar</h2>
-  <div>
     <form action="/user/update" method="post" enctype="multipart/form-data" class="row g-3 form-regis">
         <div class="col-md-4">
         <label for="username" class="form-label letter-label">Nombre</label>
@@ -17,7 +15,7 @@
         <input type="date" name="dateborn" value="{{oneUser.dateborn}}">
         </div>
         <div class="col-md-4">
-        <img src="{{oneUser.profileImg}}" alt="imagen-perfil" width="100px" />
+        <img class="borderImg" src="{{oneUser.profileImg}}" alt="imagen-perfil" width="100px" />
         <h4>Cambiar imagen de perfil</h4>
         </div>
         <div class="col-md-4">
@@ -25,7 +23,7 @@
         <input type="file" name="profileImg" />
         </div>
         <div class="col-md-4" >
-        <button type="submit" class="btn btn-primary form-miperfil-button">Actualizar perfil</button>
+        <button type="submit" class="btn btn-primary form-miperfil-button">Actualizar Perfil</button>
         {{#if this.errorMessage}} 
           <p>{{this.errorMessage}}</p>
         {{/if}}

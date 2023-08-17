@@ -1,43 +1,61 @@
-<div>
-  <h2>Editamos un lugar</h2>
+<div class="form-container">
+   <h1 class="h1title">Edición de un nuevo sitio</h1>
 
-  <form action="/places/{{onePlace._id}}/update" method="post" enctype="multipart/form-data">
-    <label for="name">Nombre del Lugar</label>
-    <input type="text" name="name" value="{{onePlace.name}}" />
-    <br />
-    <br />
-    <label for="location">Localización</label>
-    <input type="text" name="location" value="{{onePlace.location}}" />
-    <br />
-    <br />
-    <label for="description">Descripción</label>
-    <input type="text" name="description" value="{{onePlace.description}}" />
-    <br />
-    <br />
-    <img src="{{onePlace.placeImg}}" alt="Imagen actual del lugar" width="150px" />
-    <br />
-    <label for="placeImg">Cambiar imagen del Lugar</label>
-    <input type="file" name="placeImg" />
-    <br />
-    <br />
-     <label for="province">Provincias</label>
-    <select name="province">
-      {{#each cloneProvinces}}
-        {{#if isSelected}}
-        <option value="{{this}}" selected>{{this}}</option>
-        {{else}}
-        <option value="{{this}}">{{this}}</option>
-        {{/if}}
-      {{/each}}
-    </select>   
-    <br />
-    <br />
-    <button>Editar</button>
-    <form action="/places/{{placeDetails._id}}/delete" method="post"><button
-        type="submit"
-      >Eliminar</button></form>
-    {{#if this.errorMessage}}
-      <p>{{this.errorMessage}}</p>
-    {{/if}}
+  <form  class="row g-3 form-regis form-add-site" action="/places/{{onePlace._id}}/update" method="post" enctype="multipart/form-data">
+    <div class="row" style="margin-top: -15px!important;">
+        <div class="col-md-12 text-center">
+          <img src="{{onePlace.placeImg}}" width="400px" alt="Imagen actual del lugar" class="borderImg" width="150px" />
+        </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-4">
+         <label for="name">Nombre</label>
+         <input class="form-control" type="text" name="name" value="{{onePlace.name}}" />
+      </div>
+      <div class="col-md-4">
+        <label for="location">Ubicación</label>
+        <input class="form-control" type="text" name="location" value="{{onePlace.location}}" />
+      </div>
+      
+      <div class="col-md-4">
+        <label for="province">Provincias</label>
+        <select class="form-control" name="province">
+          {{#each cloneProvinces}}
+            {{#if isSelected}}
+            <option value="{{this}}" selected>{{this}}</option>
+            {{else}}
+            <option value="{{this}}">{{this}}</option>
+            {{/if}}
+          {{/each}}
+        </select> 
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8">
+        <label for="description">Descripción</label>
+        <input class="form-control" type="text" name="description" value="{{onePlace.description}}" />
+      </div>
+      <div class="col-md-4">
+            
+            <label for="placeImg">Cambiar Imagen</label>
+            <input class="form-control" type="file" name="placeImg" />
+      </div>
+    </div>
+ 
+  <div class="row">
+      <div class="col-md-4 offset-2 text-center">
+        <button id="buttonCreate" class="btn btn-primary">Actualizar</button>
+      </div>
+      <div class="col-md-4 offset-2 text-center">
+          <form action="/places/{{placeDetails._id}}/delete" method="post">
+          <button type="submit" id="buttonCreate" class="btn btn-primary">Eliminar Sitio</button>
+          </form>
+            {{#if this.errorMessage}}
+              <p>{{this.errorMessage}}</p>
+            {{/if}}
+      </div>
+  </div>
   </form>
 </div>

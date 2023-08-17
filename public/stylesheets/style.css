@@ -1,5 +1,6 @@
 body {
   font: Helvetica, Arial, sans-serif;
+  background-color: #ebe1d8!important;
 }
 
 a {
@@ -314,4 +315,20 @@ h1 {
   color: #164d49;
 }
 
+.heart-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  font-size: 40px;
+  color: gray; 
+}
 
+.heart-button.filled {
+  color: red; 
+}
+
+.borderImg {border-radius: 10px;}
+.borderPlaces {margin-top: 30px; margin-bottom: 100px}
+
+/**pusheadita de buenas noches**/

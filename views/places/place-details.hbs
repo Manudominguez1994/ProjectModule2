@@ -5,13 +5,17 @@
    <img src="{{placeDetails.placeImg}}" alt="" width="200px">
 
     {{#if isUserActive}}
-        {{#unless isAdminActive}}
-            {{#if placeInFav}}
-                <form action="/user/{{placeDetails._id}}/delete" method="post"><button>Quitar favorito</button></form>
-            {{else}}
-                <form action="/user/{{placeDetails._id}}/fav" method="post"><button>Añadir favorito</button></form>
-            {{/if}}
-        {{/unless}}
+    {{#unless isAdminActive}}
+        {{#if placeInFav}}
+        <form action="/user/{{placeDetails._id}}/delete" method="post">
+            <button class="heart-button filled"><i class="fas fa-heart"></i>&#x2665; </button>
+        </form>
+        {{else}}
+        <form action="/user/{{placeDetails._id}}/fav" method="post">
+            <button class="heart-button"><i class="far fa-heart"></i>&#x2661; </button>
+        </form>
+        {{/if}}
+    {{/unless}}
     {{/if}}
 
 
