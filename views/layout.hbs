@@ -17,20 +17,21 @@
 
   <body>
     <nav class="nav justify-content-center navHome">
-        <li class="nav-item"><a class="nav-link active" aria-current="page"  href="/">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link active" id="buttonNav" aria-current="page"  href="/">Inicio</a></li>
       {{#if isUserActive}}
         {{#unless isAdminActive}}
-        <li class="nav-item"><a class="nav-link active" aria-current="page"  href="/user/profile/">Mi Perfil</a></li>
-        <li class="nav-item"><a class="nav-link active" aria-current="page"  href="/auth/logout">Cerrar Sesión</a></li>
+        <li class="nav-item"><a class="nav-link active" id="buttonNav" aria-current="page"  href="/user/profile/">Mi Perfil</a></li>
+        <li class="nav-item"><a class="nav-link active" id="buttonNav" aria-current="page"  href="/auth/logout">Cerrar Sesión</a></li>
         {{/unless}}
       {{/if}}
       {{#if isAdminActive}}
-        <li class="nav-item"><a class="nav-link active" aria-current="page"  href="/user/list-users">Lista de usuarios</a></li>
-        <li class="nav-item"><a class="nav-link active" aria-current="page"  href="/auth/logout">Cerrar Sesión</a></li>
+        <li class="nav-item"><a class="nav-link active" id="buttonNav" aria-current="page"  href="/user/list-users">Lista de Usuarios</a></li>
+        <li class="nav-item"><a class="nav-link active" id="buttonNav" aria-current="page"  href="/places/create/place">Nuevo Sitio</a></li>
+        <li class="nav-item"><a class="nav-link active" id="buttonNav" aria-current="page"  href="/auth/logout">Cerrar Sesión</a></li>
       {{/if}}
       {{#unless isUserActive}}
-        <li class="nav-item"><a class="nav-link active" aria-current="page"  href="/auth/login">Inicio de Sesión</a></li>
-        <li class="nav-item"><a class="nav-link active" aria-current="page"  href="/auth/signup">Registrarse</a></li>
+        <li class="nav-item"><a class="nav-link active" id="buttonNav" aria-current="page"  href="/auth/login">Inicio de Sesión</a></li>
+        <li class="nav-item"><a class="nav-link active" id="buttonNav" aria-current="page"  href="/auth/signup">Registrarse</a></li>
       {{/unless}}
     </nav>
 
