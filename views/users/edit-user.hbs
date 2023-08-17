@@ -1,7 +1,7 @@
-  <div class="profile-section" >
+  <div class="profile-section" style="margin-top:150px!important; margin-bottom:150px!important;">
       <h2>Editar Usuario</h2>
     <div>
-    <form action="/user/update" method="post" enctype="multipart/form-data" class="row g-3 form-regis">
+    <form action="/user/update" method="post" enctype="multipart/form-data" class="row g-3 form-regis" style="margin-top: -170px!important;">
         <div class="col-md-4">
         <label for="username" class="form-label letter-label">Nombre</label>
         <input type="text" name="username" value="{{oneUser.username}}">
@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-4">
         <img class="borderImg" src="{{oneUser.profileImg}}" alt="imagen-perfil" width="100px" />
-        <h4>Cambiar imagen de perfil</h4>
+        <h4 style="margin-top:20px">Cambiar Imagen de Perfil</h4>
         </div>
         <div class="col-md-4">
         <label for="profileImg" class="form-label letter-label">Imagen de Perfil</label>

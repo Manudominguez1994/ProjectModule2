@@ -2,10 +2,9 @@
   <div class="card detailsite">
     <div class="card-body ">
         <h2 class="card-title">Aqui los detalles de {{placeDetails.name}}</h2>
-        <a href="{{placeDetails.location}}" target="_blank" class="card-link">Ubicacion del lugar</a>
+        <a href="{{placeDetails.location}}" target="_blank" ><button class="card-link btn btn-primary" id="buttonHome" style="margin-top: 20px; margin-bottom: 20px;">Ubicación</button></a>
         <p class="card-text">{{placeDetails.description}}</p>
-        <img src="{{placeDetails.placeImg}}" alt="" width="200px" class="img-fluid">
-
+        <img src="{{placeDetails.placeImg}}" alt="" width="500px" class="img-fluid borderImg">
         {{#if isUserActive}}
         {{#unless isAdminActive}}
           {{#if placeInFav}}
@@ -20,19 +19,19 @@
         {{/unless}}
       {{/if}}
 
-
         {{#if isAdminActive}}
-        <a href="/places/{{placeDetails._id}}/update"><button class="btn btn-warning">Editar</button></a>
-        <form action="/places/{{placeDetails._id}}/delete" method="post"><button type="submit" class="btn btn-danger">Eliminar</button></form>
-          {{/if}}
-          </div>
+        <div  class="buttonPlaceDetails">
+          <a href="/places/{{placeDetails._id}}/update"><button class="btn btn-warning">Editar</button></a>
+           <form action="/places/{{placeDetails._id}}/delete" method="post"><button type="submit" class="btn btn-danger">Eliminar</button></form>  
+        </div>
+        {{/if}}
+        </div>
     </div>
     <div  class="card mt-4 valorationclass">
       <div class="card-body">
         <form action="/comment/create/{{placeDetails._id}}" method="post">
-            <label for="valoration">Valoracion del lugar</label>
-            
-            <br>
+            <h2 style="margin-top:20px;">Valoración</h2>
+            <label for="valoration"></label>
            <div class="rating">
             <input type="radio" id="star5" name="valoration" value="5">
             <label for="star5"></label>
@@ -45,10 +44,9 @@
             <input type="radio" id="star1" name="valoration" value="1">
             <label for="star1"></label>
             </div>
-            
-            <br>
-            <textarea name="description" id="" cols="60" rows="10" placeholder="Deja aqui tu reseña!"></textarea>
-            <button type="submit" class="btn btn-success mt-3">Publicar</button>
+            <textarea class="borderImg" name="description" style="margin-top:20px;" cols="60" rows="10" placeholder="Deja aqui tu reseña!"></textarea>
+            <div> <button type="submit" class="btn btn-success mt-3">Publicar</button></div>
+           
         </form>
         </div>
     </div>
@@ -56,13 +54,27 @@
     <div class="card mt-4 valoraciones">
       <div class="card-body">
         {{#each cloneAllComments}}
-            <h4>{{this.owner.username}}</h4>Valoracion:<span>{{this.valoration}}</span>           
-            <p>{{this.description}}</p>     
+        <div class="row" style="border: 1px solid white; border-radius:20px">
+          <div class="col-md-6" style="margin-top:25px!important">
+            <h4>{{this.owner.username}}</h4>
+          </div>
+          <div class="col-md-6" style="margin-top:25px!important">
             <p>{{this.date}}</p>
+          </div>
+           <div class="col-md-12">
+            <p>{{this.description}}</p>
+          </div>      
+          <div class="col-md-12" style="margin-bottom:25px!important; margin-top:20px">
+           Valoracion:<span>{{this.valoration}}</span>   
+          </div>
+        </div>
+           
         {{#if ../isAdminActive}} 
-                <form action="/comment/delete/{{this.place._id}}/{{this._id}}" method="post"><button type="submit" class="btn btn-danger">Eliminar Comentario</button></form>
+        <div style="margin-top: 20px;">
+              <form action="/comment/delete/{{this.place._id}}/{{this._id}}" method="post"><button type="submit" class="btn btn-danger">Eliminar Comentario</button></form>
+        </div>
         {{/if}} 
         {{/each}}
-        </div>
-    </div>
+      </div>
+  </div>
 </div>

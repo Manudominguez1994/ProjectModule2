@@ -4,7 +4,7 @@
   <form  class="row g-3 form-regis form-add-site" action="/places/{{onePlace._id}}/update" method="post" enctype="multipart/form-data">
     <div class="row" style="margin-top: -15px!important;">
         <div class="col-md-12 text-center">
-          <img src="{{onePlace.placeImg}}" width="400px" alt="Imagen actual del lugar" class="borderImg" width="150px" />
+          <img src="{{onePlace.placeImg}}" width="400px" alt="Imagen actual del lugar" class="borderImg" />
         </div>
     </div>
     
@@ -35,7 +35,7 @@
     <div class="row">
       <div class="col-md-8">
         <label for="description">Descripción</label>
-        <input class="form-control" type="text" name="description" value="{{onePlace.description}}" />
+        <textarea class="form-control"  cols="40" rows="5" type="text" name="description" value="{{onePlace.description}}" /></textarea>
       </div>
       <div class="col-md-4">
             

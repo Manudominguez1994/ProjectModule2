@@ -359,4 +359,11 @@ h1 {
   text-align: center;
   width: 800px;
 }
-/**pusheadita de buenas nochesaassssssssssssssssssssssssssssssssssssssssssssssssssss**/
+
+.buttonPlaceDetails {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.rating{margin-left: 150px!important;}
