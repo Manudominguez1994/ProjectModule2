@@ -1,6 +1,5 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -8,7 +7,8 @@ a {
 }
 
 h1 {
-  color: 15px;
+  font-size: 30px;
+  text-align: center;
 }
 .rating {
   display: inline-block;
@@ -26,7 +26,7 @@ h1 {
 }
 
 .rating label:before {
-  content: '\2605';
+  content: "\2605";
 }
 
 .rating input:checked ~ label {
@@ -38,3 +38,74 @@ h1 {
   flex-direction: row-reverse;
   justify-content: flex-end;
 }
+
+.div-Home {
+  background-image: url("../images/background-andalucia.jpg");
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  width: 100vw; 
+  height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.navHome {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: 80px;
+  background-color: #164d49;
+}
+
+.navHome li {
+  margin: 10px 0;
+}
+
+.navHome a {
+  color: white;
+}
+
+.h1-Home{
+  color: white!important;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.p-Home {
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 10px 10px 10px 5px black;
+  border-radius: 25px;
+  padding: 20px;
+}
+
+.div-p-Home {
+  padding: 20px;
+  border-radius: 20px;
+  width: 785px;
+  color: white;
+  text-decoration: double;
+}
+
+.row{
+  margin-top: 90px!important;
+}
+
+.card {
+  background-color: #164d49!important;
+  color: white;
+}
+
+#buttonHome {
+  color: black;
+  background-color: white;
+}
+
+.btn-primary{border: none!important;}
+
