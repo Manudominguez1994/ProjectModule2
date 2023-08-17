@@ -1,17 +1,18 @@
-<div class="container">
+<div class="form-container">
   <h1 class="h1title">Creación de un nuevo sitio</h1>
-  <form action="/places/create/place"  method="post" enctype="multipart/form-data"></form>
+  <div>
+  <form class="row g-3 form-regis form-add-site"action="/places/create/place"  method="post" enctype="multipart/form-data">
     <div class="row">
       <div class="col-md-4">
-        <label for="name">Nombre</label>
+        <label for="name" class="form-label letter-label">Nombre</label>
         <input type="text" class="form-control" name="name" />
       </div>
       <div class="col-md-4">
-        <label for="location">Localización</label>
+        <label for="location" class="form-label letter-label">Localización</label>
         <input type="text" class="form-control" name="location" />
       </div>
       <div class="col-md-4">
-        <label for="province">Provincia</label>
+        <label for="province" class="form-label letter-label">Provincia</label>
         <select class="form-control" name="province">
           {{#each pronvincesArr}}
             <option>{{this}}</option>
@@ -21,7 +22,7 @@
     </div>
     <div class="row">
       <div class="col-md-8">
-        <label for="description">Descripción</label>
+        <label for="description" class="form-label letter-label">Descripción</label>
         <textarea
           class="form-control"
           name="description"
@@ -30,17 +31,18 @@
         ></textarea>
       </div>
       <div class="col-md-4">
-        <label for="placeImg">Imagen del Lugar</label>
+        <label for="placeImg" class="form-label letter-label">Imagen del Lugar</label>
         <input type="file" class="form-control-file" name="placeImg" />
       </div>
     </div>
     <div class="row">
       <div class="col-md-12 text-center">
-        <button id="buttonCreate" class="btn btn-primary">Añadir</button>
+        <button class="btn btn-primary form-añadir-button">Añadir</button>
         {{#if this.errorMessage}}
           <p class="text-danger">{{this.errorMessage}}</p>
         {{/if}}
       </div>
     </div>
   </form>
+  </div>
 </div>

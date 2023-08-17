@@ -1,24 +1,38 @@
-<div>
-  <h2>Perfil de usuario</h2>
+<div id="myprofile">
 
-  <h2>{{oneUser.username}}</h2>
-  <img src="{{oneUser.profileImg}}" alt="imagen-perfil" width="100px" />
-  <p>{{oneUser.email}}</p>
-  <p>{{this.dateborn}}</p>
-  <div>
-    <a href="/user/update"><button>Editar Perfil</button></a>
-    
-    <h3>Lugares Favoritos</h3>
-    {{#each oneUser.placeFav}}
-      <img src="{{this.placeImg}}" width="100px">
-      <li>{{this.name}}</li>
-      <br />
-      <form action="/user/{{this._id}}/delete" method="post"><button>Eliminar
-          Fav</button></form>
-      <br />
-      <a href="/places/{{this._id}}/details"><button>Detalles</button></a>
-      <br />
-    {{/each}}
+  <div class="profile-section">
+    <h2>Mi perfil</h2>
+    <h2>{{oneUser.username}}</h2>
+    <img src="{{oneUser.profileImg}}" alt="imagen-perfil" width="100px" />
+    <p>{{oneUser.email}}</p>
+    <p>{{this.dateborn}}</p>
+    <div>
+      <a href="/user/update"><button
+          class="form-miperfil-button btn btn-primary"
+        >Editar Perfil</button></a>
+    </div>
+  </div>
+
+  <div class="fav-container">
+    <h2>Lugares Favoritos</h2>
+    <div class="fav-row">
+      {{#each oneUser.placeFav}}
+        <div class="favs">
+
+          <img src="{{this.placeImg}}" width="100px" />
+          <h4>{{this.name}}</h4>
+
+          <div class="button-container-fav">
+            <form action="/user/{{this._id}}/delete" method="post"><button
+                class="btn btn-primary"
+              >Eliminar Fav</button></form>
+            <a href="/places/{{this._id}}/details"><button
+                class="btn btn-primary"
+              >Detalles</button></a>
+          </div>
+        </div>
+      {{/each}}
+    </div>
   </div>
 
 </div>
