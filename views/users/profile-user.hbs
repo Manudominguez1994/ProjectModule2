@@ -1,7 +1,7 @@
-<div id="myprofile">
+<div id="myprofile" style="margin-top: 80px;">
 
   <div class="profile-section">
-    <h2>Mi perfil</h2>
+    <h2>Mi Perfil</h2>
     <h2>{{oneUser.username}}</h2>
     <img src="{{oneUser.profileImg}}" alt="imagen-perfil" width="100px" />
     <p>{{oneUser.email}}</p>
@@ -13,11 +13,11 @@
     </div>
   </div>
 
-  <div class="fav-container">
-    <h2>Lugares Favoritos</h2>
-    <div class="fav-row">
+  <div class="fav-container borderPlaces">
+    <h2 style="margin-bottom:30px; margin-top:30px">Lugares Favoritos</h2>
+    <div class="fav-row" style="margin-bottom:50px;">
       {{#each oneUser.placeFav}}
-        <div class="favs">
+        <div class="favs" style="margin:0 auto">
 
           <img src="{{this.placeImg}}" width="100px" />
           <h4>{{this.name}}</h4>

@@ -6,6 +6,7 @@
         <p class="card-text">{{placeDetails.description}}</p>
         <img src="{{placeDetails.placeImg}}" alt="" width="200px" class="img-fluid">
 
+<<<<<<< HEAD
         {{#if isUserActive}}
         {{#unless isAdminActive}}
           {{#if placeInFav}}
@@ -19,6 +20,21 @@
           {{/if}}
         {{/unless}}
       {{/if}}
+=======
+    {{#if isUserActive}}
+    {{#unless isAdminActive}}
+        {{#if placeInFav}}
+        <form action="/user/{{placeDetails._id}}/delete" method="post">
+            <button class="heart-button filled"><i class="fas fa-heart"></i>&#x2665; </button>
+        </form>
+        {{else}}
+        <form action="/user/{{placeDetails._id}}/fav" method="post">
+            <button class="heart-button"><i class="far fa-heart"></i>&#x2661; </button>
+        </form>
+        {{/if}}
+    {{/unless}}
+    {{/if}}
+>>>>>>> 30f755b5c88a10c816bb616e803a1536e42528f6
 
 
         {{#if isAdminActive}}

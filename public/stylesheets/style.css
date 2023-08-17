@@ -1,5 +1,6 @@
 body {
   font: Helvetica, Arial, sans-serif;
+  background-color: #ebe1d8!important;
 }
 
 a {
@@ -326,32 +327,8 @@ h1 {
 .heart-button.filled {
   color: red; 
 }
-.detailsite{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 800px;
-  
-}
-.detailbodysite{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  flex-direction: column;
-}
-.valorationclass{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 800px;
-}
-.valoraciones{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 800px;
-}
+
+.borderImg {border-radius: 10px;}
+.borderPlaces {margin-top: 30px; margin-bottom: 100px}
+
+/**pusheadita de buenas noches**/
