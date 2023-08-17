@@ -12,7 +12,7 @@ const word = "patata";
 
 //POST /comment/create => Creamos un comentario en nuestra seccion de detalles de los lugares
 router.post("/create/:placeId", async (req, res, next) => {
-  
+   
   try {
     let stars = "";
     if (req.body.valoration === "1") {
@@ -27,6 +27,14 @@ router.post("/create/:placeId", async (req, res, next) => {
        stars = "⭐⭐⭐⭐⭐";
       console.log("comentarios estrellitas",stars)
     }
+   //Condicional para comprobar si no se escribe nada en el comentario
+   if ( req.body.description === "" || stars === "") {
+    res.status(400).render("places/place-details.hbs", {
+      errorMessage: "Debes rellenar todos los campos para publicar tu comentario",
+    });
+    console.log("esta es mi descriipcion", req.body.description);
+    return;
+  }
     const currentDate = new Date().getTime();
     const thisPlace = await Place.findById(req.params.placeId);
     const newCommment = await Comment.create({
@@ -44,11 +52,7 @@ router.post("/create/:placeId", async (req, res, next) => {
   }
 });
 //POST /comment/:commentId/delete
-router.post(
-  "/delete/:placeId/:commentId",
-  isAdmin,
-  updateLocals,
-  async (req, res, next) => {
+router.post("/delete/:placeId/:commentId", isAdmin, updateLocals, async (req, res, next) => {
     try {
       const thisPlace = await Place.findById(req.params.placeId);
       const oneComment = await Comment.findByIdAndDelete(req.params.commentId);

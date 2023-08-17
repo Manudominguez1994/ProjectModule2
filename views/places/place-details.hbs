@@ -4,11 +4,11 @@
    <p>{{placeDetails.description}}</p>
    <img src="{{placeDetails.placeImg}}" alt="" width="200px">
 
-       {{#if isUserActive}}
-            {{#unless isAdminActive}}
-             <form action="/user/{{placeDetails._id}}/fav" method="post"><button>Favorito</button></form>
-            {{/unless}}
-         {{/if}}
+    {{#if isUserActive}}
+        {{#unless isAdminActive}}
+            <form action="/user/{{placeDetails._id}}/fav" method="post"><button>Favorito</button></form>
+        {{/unless}}
+    {{/if}}
 
 
    {{#if isAdminActive}}
@@ -34,7 +34,7 @@
             </div>
             <br>
             <br>
-            <textarea name="description" id="" cols="30" rows="10" placeholder="Deja aqui tu reseña!"></textarea>
+            <textarea name="description" id="" cols="60" rows="10" placeholder="Deja aqui tu reseña!"></textarea>
             <button type="submit">Publicar</button>
         </form>
     </div>

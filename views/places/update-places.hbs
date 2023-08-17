@@ -20,8 +20,16 @@
     <input type="file" name="placeImg" />
     <br />
     <br />
-    <label for="province">Provincia</label>
-    <input type="text" name="province" value="{{onePlace.province}}" />
+     <label for="province">Provincias</label>
+    <select name="province">
+      {{#each cloneProvinces}}
+        {{#if isSelected}}
+        <option value="{{this}}" selected>{{this}}</option>
+        {{else}}
+        <option value="{{this}}">{{this}}</option>
+        {{/if}}
+      {{/each}}
+    </select>   
     <br />
     <br />
     <button>Editar</button>

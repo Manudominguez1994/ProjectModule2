@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Place = require("../models/Place.model");
 const User = require("../models/User.model");
+const Comment = require("../models/Comments.model");
 // const { findById } = require("../models/Place.model");
 const uploadImg = require("../middlewares/cloudinary.middlewares");
 const { isLoggedIn } = require("../middlewares/auth.middlewares");
@@ -29,7 +30,7 @@ router.post("/:placeId/fav", isLoggedIn, async (req, res, next) => {
       $addToSet: { placeFav: req.params.placeId },
     });
     // console.log(addPlaceFav);
-    res.redirect(`/places/${onePlace.province}`);
+    res.redirect(`/places/${onePlace._id}/details`);
   } catch (error) {
     next(error);
   }
@@ -59,8 +60,10 @@ router.get("/list-users", async (req, res, next) => {
 //POST /user/delete/:userId => Ruta para borrar un usuario
 router.post("/delete/:userId", async (req, res, next) => {
   try {
-    const oneUser = await User.findByIdAndDelete(req.params.userId);
-    console.log("user que borraremos", oneUser);
+    const userId = req.params.userId
+    const eachComments = await Comment.deleteMany({ owner: userId })
+    const oneUser = await User.findByIdAndDelete(userId);
+    console.log("user que borraremos y sus comentarios", oneUser , eachComments);
     res.redirect(`/user/list-users`);
   } catch (error) {
     next(error);
@@ -76,10 +79,7 @@ router.get("/update", async (req, res, next) => {
   }
 });
 //POST /user/update/ => actualizamos la informacion de la DB del usuario
-router.post(
-  "/update",
-  uploadImg.single("profileImg"),
-  async (req, res, next) => {
+router.post("/update", uploadImg.single("profileImg"),async (req, res, next) => {
     const { username, email, dateborn } = req.body;
     try {
       let datebornToUpdate = req.session.user.dateborn;

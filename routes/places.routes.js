@@ -22,8 +22,7 @@ router.get("/create/place", (req, res, next) => {
   res.render("places/new-place.hbs", { pronvincesArr });
 });
 //POST /places/create-place => Creamos el lugar en nuestra base de datos
-router.post(
-  "/create/place",
+router.post("/create/place",
   uploadImg.single("placeImg"),
   async (req, res, next) => {
     // console.log("nuevo lugar", req.body);
@@ -47,7 +46,7 @@ router.post(
         province: req.body.province,
       });
       // console.log("Mi nuevo lugar",newPlace);
-      res.redirect(`/places/${newPlace._id}/details`);
+      res.redirect(`/places/${newPlace.province}`);
     } catch (error) {
       next(error);
     }
@@ -76,18 +75,20 @@ router.get("/:placeId/details", isLoggedIn, async (req, res, next) => {
 //GET /places/:placeId/update => Renderizamos vista para editar nuestro lugar
 router.get("/:placeId/update", isAdmin, async (req, res, next) => {
   try {
+    const cloneProvinces = JSON.parse(JSON.stringify(pronvincesArr));
     const onePlace = await Place.findById(req.params.placeId);
-    //console.log(onePlace)
+    
+  
+    console.log(onePlace)
     res.render("places/update-places.hbs", {
-      onePlace,
+      onePlace,cloneProvinces 
     });
   } catch (error) {
     next(error);
   }
 });
 //POST /place/:placeId/update => Actualizamos los datos de DB
-router.post(
-  "/:placeId/update",
+router.post("/:placeId/update",
   uploadImg.single("placeImg"),
   async (req, res, next) => {
     const placeId = req.params.placeId;
