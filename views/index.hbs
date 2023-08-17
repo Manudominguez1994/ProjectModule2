@@ -1,7 +1,21 @@
-<div>
+<div class="div-Home">
+  <h1 class="h1-Home">Descube el turismo en Andalucía</h1>
+     <div class="div-p-Home">
+    <p class="p-Home">Sumérgete en la rica historia, la cultura vibrante y los
+      paisajes impresionantes que hacen de Andalucía un destino verdaderamente
+      inolvidable. 
+    </p></div>
+  <div class="row justify-content-center">
     {{#each provincesPlaces}}
-                <h4>{{this}}</h4>
-                <br>
-                <a href="/places/{{this}}"><button>Detalles</button></a>
-     {{/each}}
+      <div class="col-md-3 mb-4">
+        <div class="card text-center" style="width: 12rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{this}}</h5>
+            <br />
+            <a href="/places/{{this}}" id="buttonHome" class="btn btn-primary">Detalles</a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
 </div>
