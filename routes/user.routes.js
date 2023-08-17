@@ -25,10 +25,19 @@ router.get("/profile", isLoggedIn, async (req, res, next) => {
 //POST /user/:placeId/fav => Añadimos a la propiedad de sitios favoritos de la base de datos los lugares
 router.post("/:placeId/fav", isLoggedIn, async (req, res, next) => {
   try {
+ 
     const onePlace = await Place.findById(req.params.placeId);
-    const addPlaceFav = await User.findByIdAndUpdate(req.session.user._id, {
-      $addToSet: { placeFav: req.params.placeId },
-    });
+    const user = await User.findById(req.session.user._id);
+     
+    if(user.placeFav.includes(onePlace)){
+      await User.findByIdAndUpdate(req.session.user._id,{
+        $pull: {placeFav: onePlace}
+      })
+    }else{
+      await User.findByIdAndUpdate(req.session.user._id,{
+        $addToSet: {placeFav: onePlace}
+      })
+    }
     // console.log(addPlaceFav);
     res.redirect(`/places/${onePlace._id}/details`);
   } catch (error) {
@@ -38,12 +47,12 @@ router.post("/:placeId/fav", isLoggedIn, async (req, res, next) => {
 //POST /user/:placeId/fav => Eliminamos el lugar de sitios favoritos de la base de datos los lugares
 router.post("/:placeId/delete", isLoggedIn, async (req, res, next) => {
   try {
-    //const onePlace = await Place.findById(req.params.placeId)
+    const onePlace = await Place.findById(req.params.placeId)
     const deletePlaceFav = await User.findByIdAndUpdate(req.session.user._id, {
       $pull: { placeFav: req.params.placeId },
     });
     console.log("eliminado lugar fav", deletePlaceFav);
-    res.redirect("/user/profile");
+    res.redirect(`/places/${onePlace._id}/details`);
   } catch (error) {
     next(error);
   }

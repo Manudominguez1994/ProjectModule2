@@ -1,27 +1,37 @@
-<div>
-  <h3>Formulario de Registro</h3>
-  <form action="/auth/signup" method="post" enctype="multipart/form-data">
-    <label for="username">Nombre de usuario</label>
-    <input type="text" name="username">
-    <br>
-    <label for="email">Email</label>
-    <input type="email" name="email">
-    <br>
-    <label for="password">Contraseña</label>
-    <input type="password" name="password">
-    <br>
-    <label for="confirmPassword">Confirma tu contraseña</label>
-    <input type="password" name="confirmPassword">
-    <br>
-    <label for="dateborn">Fecha de Nacimiento</label>
-    <input type="date" name="dateborn">
-    <br>
-    <label for="profileImg">Imagen de Perfil</label>
-    <input type="file" name="profileImg">
-    <br>
-    <button>Registrarse</button>
+<div class="form-signup">
+
+  <div  >
+  <form action="/auth/signup" method="post" enctype="multipart/form-data" class="row g-3 form-regis">
+    <div class="col-md-4">
+    <label for="username" class="form-label letter-label">Nombre de usuario</label>
+    <input type="text" name="username" class="form-control">
+    </div>
+    <div class="col-md-4">
+    <label for="email" class="form-label letter-label">Email</label>
+    <input type="email" name="email" class="form-control">
+    </div>
+    <div class="col-md-4">
+    <label for="password" class="form-label letter-label">Contraseña</label>
+    <input type="password" name="password" class="form-control">
+    </div>
+    <div class="col-md-4">
+    <label for="confirmPassword" class="form-label letter-label">Confirma tu contraseña</label>
+    <input type="password" name="confirmPassword" class="form-control">
+    </div>
+    <div class="col-md-4">
+    <label for="dateborn" class="form-label letter-label">Fecha de Nacimiento</label>
+    <input type="date" name="dateborn" class="form-control">
+    </div>
+    <div class="col-md-4">
+    <label for="profileImg" class="form-label letter-label">Imagen de Perfil</label>
+    <input type="file" name="profileImg" class="form-control">
+    </div>
+    <div class="col-12">
+    <button type="submit" class="btn btn-primary">Registrarse</button>
     {{#if this.errorMessage}} 
       <p>{{this.errorMessage}}</p>
     {{/if}}
+    </div>
   </form>
+  </div>
 </div>

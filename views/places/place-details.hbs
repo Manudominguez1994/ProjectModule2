@@ -6,7 +6,11 @@
 
     {{#if isUserActive}}
         {{#unless isAdminActive}}
-            <form action="/user/{{placeDetails._id}}/fav" method="post"><button>Favorito</button></form>
+            {{#if placeInFav}}
+                <form action="/user/{{placeDetails._id}}/delete" method="post"><button>Quitar favorito</button></form>
+            {{else}}
+                <form action="/user/{{placeDetails._id}}/fav" method="post"><button>Añadir favorito</button></form>
+            {{/if}}
         {{/unless}}
     {{/if}}
 

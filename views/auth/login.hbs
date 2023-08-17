@@ -1,16 +1,22 @@
-<div>
-  <h2>Aqui nos lojeamos</h2>
-  <form action="/auth/login" method="post">
-    <label for="email">Email</label>
-    <input type="email" name="email" />
-    <br />
-    <label for="password">Contraseña</label>
-    <input type="password" name="password" />
-    <br />
-    <button>Acceder</button>
+<div class="form-signup">
+
+  <div>
+  <form action="/auth/login" method="post" class="row g-3 form-regis">
+    <div class="col-md-4">
+    <label for="email" class="form-label letter-label">Email</label>
+    <input type="email" name="email" class="form-control"/>
+    </div>
+    <div class="col-md-4">
+    <label for="password" class="form-label letter-label">Contraseña</label>
+    <input type="password" name="password" class="form-control"/>
+    </div>
+    <div class="col-12">
+    <button type="submit" class="btn btn-primary">Acceder</button>
     {{!-- <button>Registrarse</button> --}}
     {{#if this.errorMessage}}
       <p>{{this.errorMessage}}</p>
     {{/if}}
+    </div>
   </form>
+  </div>
 </div>

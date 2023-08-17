@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Place = require("../models/Place.model");
+const User = require("../models/User.model");
 const Comment = require("../models/Comments.model");
 const pronvincesArr = require("../utils/provinces");
 const uploadImg = require("../middlewares/cloudinary.middlewares");
@@ -67,7 +68,10 @@ router.get("/:placeId/details", isLoggedIn, async (req, res, next) => {
       eachComment.date = new Date(eachComment.date).toLocaleString();
     });
     //console.log("todos mis comentarios", cloneAllComments);
-    res.render("places/place-details.hbs", { placeDetails, cloneAllComments });
+    const user = await User.findById(req.session.user._id)
+    const placeInFav = user.placeFav.includes(placeDetails._id)
+    
+    res.render("places/place-details.hbs", { placeDetails, cloneAllComments, placeInFav });
   } catch (error) {
     next(error);
   }
