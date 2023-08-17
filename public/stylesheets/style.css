@@ -330,5 +330,33 @@ h1 {
 
 .borderImg {border-radius: 10px;}
 .borderPlaces {margin-top: 30px; margin-bottom: 100px}
+.detailsite{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 800px;
 
-/**pusheadita de buenas noches**/
+}
+.detailbodysite{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+.valorationclass{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 800px;
+}
+.valoraciones{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 800px;
+}
+/**pusheadita de buenas nochesaassssssssssssssssssssssssssssssssssssssssssssssssssss**/
