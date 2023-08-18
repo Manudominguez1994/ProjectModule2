@@ -14,7 +14,7 @@ router.post(
   "/signup",
   uploadImg.single("profileImg"),
   async (req, res, next) => {
-    console.log("body", req.body);
+    //console.log("body", req.body);
     const { username, email, password, dateborn, confirmPassword } = req.body;
     let profileImg;
     //condicional que comprueba si las contraseñas introducidas coinciden
@@ -33,7 +33,13 @@ router.post(
     }
 
     //condicional para comprobar que todos los campos del form registro estan rellenos
-    if (username === "" || email === "" || password === ""|| confirmPassword === ""|| dateborn === "") {
+    if (
+      username === "" ||
+      email === "" ||
+      password === "" ||
+      confirmPassword === "" ||
+      dateborn === ""
+    ) {
       res.status(400).render("auth/signup.hbs", {
         errorMessage: "Debes rellenar todos los campos para registrarte",
       });
@@ -75,13 +81,13 @@ router.post(
       const passwordHash = await bcrypt.hash(password, salt);
       const passwordHash2 = await bcrypt.hash(confirmPassword, salt);
       // console.log(passwordHash);
-       // console.log(passwordHash2);
-      console.log("el valor de nuestra img", profileImg);
+      // console.log(passwordHash2);
+      //console.log("el valor de nuestra img", profileImg);
       await User.create({
         username: username,
         email: email,
         password: passwordHash,
-        confirmPassword:passwordHash2,
+        confirmPassword: passwordHash2,
         dateborn: dateborn,
         profileImg: profileImg,
       });

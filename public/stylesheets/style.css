@@ -1,6 +1,6 @@
 body {
   font: Helvetica, Arial, sans-serif;
-  background-color: #ebe1d8!important;
+  background-color: #ebe1d8 !important;
 }
 
 a {
@@ -120,7 +120,6 @@ h1 {
   border: 1px solid #164d49;
   background-color: white;
   color: #164d49;
-
 }
 
 .btn-primary {
@@ -142,21 +141,21 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh; 
+  height: 100vh;
   text-align: center;
 }
 
 .placeDetails {
-  margin-top: 80px; 
+  margin-top: 80px;
 }
 
 #buttonDetails {
   background-color: #164d49;
-  margin-top:20px
+  margin-top: 20px;
 }
 
 #buttonDetails:hover {
-  border: 1px solid #164d49!important;
+  border: 1px solid #164d49 !important;
   background-color: white;
   color: #164d49;
 }
@@ -166,67 +165,65 @@ h1 {
 }
 
 #buttonCreate:hover {
-  border: 1px solid #164d49!important;
+  border: 1px solid #164d49 !important;
   background-color: white;
   color: #164d49;
 }
-.form-signup{
+.form-signup {
   background-image: url("../images/background-andalucia.jpg");
-  background-size: cover; 
+  background-size: cover;
   background-repeat: no-repeat;
 
   padding: 20px;
-  width: 100vw; 
-  height: 100vh; 
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  }
-.form-regis{
-   display: flex;
+}
+.form-regis {
+  display: flex;
   flex-direction: column;
-   align-items: center;
-  justify-content: center; 
+  align-items: center;
+  justify-content: center;
   height: 100%;
   margin-top: 50px;
 }
-.letter-label{
+.letter-label {
   font-weight: bold;
 }
 .form-inicio-button.btn-primary {
-  position: absolute; 
+  position: absolute;
   bottom: 400px;
-  left: 50%; 
+  left: 50%;
   transform: translateX(-50%);
-  background-color: #164d49; 
+  background-color: #164d49;
 }
 .form-añadir-button.btn-primary {
-  position: absolute; 
+  position: absolute;
   bottom: 180px;
-  left: 50%; 
+  left: 50%;
   transform: translateX(-50%);
-  background-color: #164d49; 
+  background-color: #164d49;
 }
 .form-regis-button.btn-primary {
-  position: absolute; 
+  position: absolute;
   bottom: 80px;
-  left: 50%; 
+  left: 50%;
   transform: translateX(-50%);
-  background-color: #164d49;  
+  background-color: #164d49;
 }
-.form-miperfil-button.btn-primary{
-  position: absolute; 
+.form-miperfil-button.btn-primary {
+  position: absolute;
   transform: translateX(-50%);
-  background-color: #164d49; 
-  
+  background-color: #164d49;
 }
-.form-miperfil-button.btn-primary:hover{
-  border: 1px solid #164d49!important;
+.form-miperfil-button.btn-primary:hover {
+  border: 1px solid #164d49 !important;
   background-color: white;
   color: #164d49;
-  
 }
-.form-add-site{
-  margin: 0 auto ;
+.form-add-site {
+  margin: 0 auto;
 }
 .form-container {
   display: flex;
@@ -243,7 +240,6 @@ h1 {
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
-  
 }
 
 .profile-section h2 {
@@ -264,7 +260,7 @@ h1 {
   background-color: #f5f5f5;
   flex-direction: column;
   align-items: center;
-  
+
   border: 1px solid #ccc;
   padding: 20px;
   border-radius: 8px;
@@ -280,19 +276,17 @@ h1 {
   gap: 20px;
   width: 780px;
   background-color: transparent;
-  
 }
 
 .favs {
-  background-color:transparent;
+  background-color: transparent;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width:380px;
-  height: 440px; 
+  width: 380px;
+  height: 440px;
   margin-bottom: 20px;
-  
 }
 .favs img {
   width: 100%;
@@ -303,14 +297,13 @@ h1 {
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
-  
 }
-.button-container-fav button{
+.button-container-fav button {
   background-color: #164d49;
 }
 
 .button-container-fav button:hover {
-  border: 1px solid #164d49!important;
+  border: 1px solid #164d49 !important;
   background-color: white;
   color: #164d49;
 }
@@ -321,38 +314,42 @@ h1 {
   cursor: pointer;
   outline: none;
   font-size: 40px;
-  color: gray; 
+  color: gray;
 }
 
 .heart-button.filled {
-  color: red; 
+  color: red;
 }
 
-.borderImg {border-radius: 10px;}
-.borderPlaces {margin-top: 30px; margin-bottom: 100px}
-.detailsite{
+.borderImg {
+  border-radius: 10px;
+}
+.borderPlaces {
+  margin-top: 30px;
+  margin-bottom: 100px;
+}
+.detailsite {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   width: 800px;
-
 }
-.detailbodysite{
+.detailbodysite {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   flex-direction: column;
 }
-.valorationclass{
+.valorationclass {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   width: 800px;
 }
-.valoraciones{
+.valoraciones {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -366,4 +363,6 @@ h1 {
   margin-top: 20px;
 }
 
-.rating{margin-left: 150px!important;}
+.rating {
+  margin-left: 150px !important;
+}

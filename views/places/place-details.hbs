@@ -1,7 +1,7 @@
 <div class="container mt-4 detailbodysite">
   <div class="card detailsite">
     <div class="card-body ">
-        <h2 class="card-title">Aqui los detalles de {{placeDetails.name}}</h2>
+        <h2 class="card-title">Aquí los detalles de {{placeDetails.name}}</h2>
         <a href="{{placeDetails.location}}" target="_blank" ><button class="card-link btn btn-primary" id="buttonHome" style="margin-top: 20px; margin-bottom: 20px;">Ubicación</button></a>
         <p class="card-text">{{placeDetails.description}}</p>
         <img src="{{placeDetails.placeImg}}" alt="" width="500px" class="img-fluid borderImg">
@@ -18,7 +18,6 @@
           {{/if}}
         {{/unless}}
       {{/if}}
-
         {{#if isAdminActive}}
         <div  class="buttonPlaceDetails">
           <a href="/places/{{placeDetails._id}}/update"><button class="btn btn-warning">Editar</button></a>

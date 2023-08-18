@@ -1,20 +1,15 @@
 <div class="listPlaces">
   <h1 class="h1title">Sitios de interés en {{allPlaces.0.province}}</h1>
-
-  {{!-- {{#if isAdminActive}}
-    <a href="/places/create/place">
-      <button class="btn btn-primary" id="buttonDetails">Crear Nuevo Lugar</button>
-    </a>
-  {{/if}} --}}
-
   <div class="placeDetails">
     {{#each allPlaces}}
-      <h2 style="font-style: italic;" style="margin-top:50px!important">{{this.name}} </h2>
+      <h2 style="font-style: italic;" style="margin-top: 50px!important">{{this.name}} </h2>
       <img src="{{this.placeImg}}" alt="" width="600px" />
       <a href="/places/{{this._id}}/details"><button
           id="buttonDetails"
           class="btn btn-primary"
         >Detalles</button></a>
+        <br>
+        <br>
     {{/each}}
   </div>
 </div>
