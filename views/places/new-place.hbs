@@ -1,6 +1,6 @@
 <div class="container">
   <h1 class="h1title">Creación de un nuevo sitio</h1>
-  <form action="/places/create/place"  method="post" enctype="multipart/form-data"></form>
+  <form action="/places/create/place"  method="post" enctype="multipart/form-data">
     <div class="row">
       <div class="col-md-4">
         <label for="name">Nombre</label>
@@ -36,7 +36,7 @@
     </div>
     <div class="row">
       <div class="col-md-12 text-center">
-        <button id="buttonCreate" class="btn btn-primary">Añadir</button>
+        <button id="buttonCreate" class="btn btn-primary" type="submit">Añadir</button>
         {{#if this.errorMessage}}
           <p class="text-danger">{{this.errorMessage}}</p>
         {{/if}}
