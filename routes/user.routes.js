@@ -15,8 +15,8 @@ router.get("/profile", isLoggedIn, async (req, res, next) => {
     );
 
     const dateborn = oneUser.dateborn.toDateString();
-    console.log("esta es la fecha to String", dateborn);
-    console.log("propiedades del user", oneUser);
+    //console.log("esta es la fecha to String", dateborn);
+   //console.log("propiedades del user", oneUser);
     res.render("users/profile-user.hbs", { oneUser, dateborn });
   } catch (error) {
     next(error);
@@ -25,18 +25,17 @@ router.get("/profile", isLoggedIn, async (req, res, next) => {
 //POST /user/:placeId/fav => Añadimos a la propiedad de sitios favoritos de la base de datos los lugares
 router.post("/:placeId/fav", isLoggedIn, async (req, res, next) => {
   try {
- 
     const onePlace = await Place.findById(req.params.placeId);
     const user = await User.findById(req.session.user._id);
-     
-    if(user.placeFav.includes(onePlace)){
-      await User.findByIdAndUpdate(req.session.user._id,{
-        $pull: {placeFav: onePlace}
-      })
-    }else{
-      await User.findByIdAndUpdate(req.session.user._id,{
-        $addToSet: {placeFav: onePlace}
-      })
+
+    if (user.placeFav.includes(onePlace)) {
+      await User.findByIdAndUpdate(req.session.user._id, {
+        $pull: { placeFav: onePlace },
+      });
+    } else {
+      await User.findByIdAndUpdate(req.session.user._id, {
+        $addToSet: { placeFav: onePlace },
+      });
     }
     // console.log(addPlaceFav);
     res.redirect(`/places/${onePlace._id}/details`);
@@ -47,11 +46,11 @@ router.post("/:placeId/fav", isLoggedIn, async (req, res, next) => {
 //POST /user/:placeId/fav => Eliminamos el lugar de sitios favoritos de la base de datos los lugares
 router.post("/:placeId/delete", isLoggedIn, async (req, res, next) => {
   try {
-    const onePlace = await Place.findById(req.params.placeId)
+    const onePlace = await Place.findById(req.params.placeId);
     const deletePlaceFav = await User.findByIdAndUpdate(req.session.user._id, {
       $pull: { placeFav: req.params.placeId },
     });
-    console.log("eliminado lugar fav", deletePlaceFav);
+    //console.log("eliminado lugar fav", deletePlaceFav);
     res.redirect(`/places/${onePlace._id}/details`);
   } catch (error) {
     next(error);
@@ -69,10 +68,10 @@ router.get("/list-users", async (req, res, next) => {
 //POST /user/delete/:userId => Ruta para borrar un usuario
 router.post("/delete/:userId", async (req, res, next) => {
   try {
-    const userId = req.params.userId
-    const eachComments = await Comment.deleteMany({ owner: userId })
+    const userId = req.params.userId;
+    const eachComments = await Comment.deleteMany({ owner: userId });
     const oneUser = await User.findByIdAndDelete(userId);
-    console.log("user que borraremos y sus comentarios", oneUser , eachComments);
+    //console.log("user que borraremos y sus comentarios", oneUser, eachComments);
     res.redirect(`/user/list-users`);
   } catch (error) {
     next(error);
@@ -88,7 +87,10 @@ router.get("/update", async (req, res, next) => {
   }
 });
 //POST /user/update/ => actualizamos la informacion de la DB del usuario
-router.post("/update", uploadImg.single("profileImg"),async (req, res, next) => {
+router.post(
+  "/update",
+  uploadImg.single("profileImg"),
+  async (req, res, next) => {
     const { username, email, dateborn } = req.body;
     try {
       let datebornToUpdate = req.session.user.dateborn;
@@ -108,7 +110,7 @@ router.post("/update", uploadImg.single("profileImg"),async (req, res, next) => 
         dateborn: datebornToUpdate,
         profileImg: profileImgUpdate,
       });
-      console.log("usuario actualizado", userUpdate);
+      //console.log("usuario actualizado", userUpdate);
       res.redirect("/user/profile");
     } catch (error) {
       next(error);
