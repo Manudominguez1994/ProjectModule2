@@ -51,7 +51,7 @@ router.post("/create/:placeId", async (req, res, next) => {
     next(error);
   }
 });
-//POST /comment/:commentId/delete
+//POST /comment/delete/:placeId/:commentId => Elimina un comentario
 router.post(
   "/delete/:placeId/:commentId",
   isAdmin,
